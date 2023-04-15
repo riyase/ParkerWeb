@@ -1,0 +1,14 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+.signin-container {
+    margin:auto;
+    min-height: calc(100% - (100px + 80px));
+    width: fit-content;
+    height: fit-content;
+}
+.signin-form {
+    display: flex;
+    flex-direction: column;
+}

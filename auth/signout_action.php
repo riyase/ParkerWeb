@@ -1,0 +1,11 @@
+<?php
+
+session_start();
+$_SESSION = array();
+session_destroy();
+$response = array("logged_out" => true);
+header("Content-Type: application/json");
+echo json_encode($response);
+//header("location: signin.php");
+
+?>
