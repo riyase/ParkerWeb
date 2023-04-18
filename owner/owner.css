@@ -22,6 +22,13 @@
     width: 70%;
     height: 100%;
     min-height: 400px;
+    padding: 10px;
+}
+#owner-space-details {
+    overflow: scroll;
+}
+#space-detail-map-image {
+    width: 100%;
 }
 
 
@@ -47,9 +54,7 @@
     background: #EEE;
     flex: 1;
 }
-#owner-detail {
-    margin: 30px;
-}
+
 #space-bookings {
     background: #FF0;
 }
@@ -66,8 +71,9 @@
     margin: 2px 2px;
     padding: 2px;
 }
-.space-detail {
+.space-name-address {
     flex: 1;
+    display: flex;
     flex-direction: column;
     margin: 8px;
     height: 100%;
@@ -81,14 +87,25 @@
     color: gray;
     margin: 2px;
 }
-.btn-remove-space {
-    width: 35px;
-    height: 35px;
-    padding: 6px 12px;
-    cursor: pointer;
-}
 
-.popup-add-space {
+#space-detail-name-edit {
+    display: flex;
+    flex-direction: row;
+}
+#space-detail-name {
+    flex: 1;
+}
+#btn-update-space {
+
+}
+/*.btn-remove-space {*/
+/*    width: 35px;*/
+/*    height: 35px;*/
+/*    padding: 6px 12px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+#popup-add-space {
     position: absolute;
     display: none;
     top: 50%;
@@ -176,7 +193,7 @@
     line-height: 57px;
 }
 
-.btn-add-space {
+.popup-btn {
     width: 100%;
     height: 40px;
     margin-top: 10px;

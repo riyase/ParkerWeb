@@ -13,11 +13,11 @@ bg: https://unsplash.com/photos/Nyvq2juw4_o
 }
 html {
     height: 89vh;
-    width: 98vw;
+    width: 100%;
     padding-top: 100px;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-bottom: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
 }
 #home-body {
     /*display: flex;
@@ -25,6 +25,7 @@ html {
     align-items: center;*/
     height: 100%;
     width: 100%;
+    overflow: hidden;
     background: url('/spare_park/img/bg-pedro-lastra-unsplash.jpg') no-repeat;
 }
 
@@ -85,10 +86,16 @@ html {
     margin-left: 20px;
     color: #fff;
     font-size: 1.1em;
-    font-weight: 1.1em;
+    font-weight: bold;
     transition: 0.3s;
 }
 .navbar .btn-login:hover {
     background: #fff;
     color: #162938;
+}
+.ion-icon {
+    width: 35px;
+    height: 35px;
+    padding: 6px 12px;
+    cursor: pointer;
 }

@@ -7,7 +7,7 @@
     header("location: /spare_park/auth/signout_action.php");
     exit;
 }*/
-header("location: /spare_park/home/home.php");
+header("location: /spare_park/home.php");
 ?>
 
 <!-- <!DOCTYPE html>
