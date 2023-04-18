@@ -18,6 +18,7 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox -->
     <link rel="stylesheet" href="/spare_park/owner/owner.css">
     <script src="/spare_park/owner/owner.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 </head>
 <body id="owner-body">
     <div id="owner-root-container">
@@ -28,10 +29,14 @@
             </div>
             <div id="owner-detail">
                 <div>
-                    
+                    <img id="space-detail-map-image" src="" alt="" >
+                    <ion-icon class="btn-update-space" name="pencil-outline"></ion-icon>
+                    <h3 id="space-detail-name">Space name</h5>
+                    <p id="space-detail-description">Space description</p>
+                    <p id="space-detail-address">Space address</p>
                 </div>
-                <div id="space-bookings">
-                </div>
+                <ul id="space-bookings">
+                </ul>
             </div>
         </div>
         <div class="popup-add-space">
@@ -39,8 +44,8 @@
                 <ion-icon name="close"></ion-icon>
             </span>
             <div class="form-box">
-                <h2>Add Space</h2>
-                <form action="#">
+                <h2 id="popup-add-space-title">Add Space</h2>
+                <form id="form-add-space" action="#">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
                         <input class="space-name" type="text" required>

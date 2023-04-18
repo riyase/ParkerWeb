@@ -7,7 +7,7 @@
 #owner-container {
     width: 100%;
     height: 100%;
-    
+    background: #FF0;
     padding: 4px;
     display: flex;
     flex-direction: row;
@@ -46,6 +46,9 @@
     padding: 8px;
     background: #EEE;
     flex: 1;
+}
+#owner-detail {
+    margin: 30px;
 }
 #space-bookings {
     background: #FF0;
@@ -93,7 +96,8 @@
     transform: translate(-50%, -50%);
     min-width: 350px;
     
-    background: transparent;
+    /*background: transparent;*/
+    background: white;
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 10px;
     backdrop-filter: blur(20px);

@@ -25,6 +25,7 @@ $yoyo = '{"name": "riyas"}';
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="home.js"></script>
     <script src="/spare_park/owner/owner.js"></script>
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGsGonLWTkKhOE9xCVlM-N0EFaLHk4DvI&callback=fetchMap"></script> -->
 
 </head>
 <body id="home-body">
@@ -43,7 +44,9 @@ $yoyo = '{"name": "riyas"}';
             <!-- <?php endif; ?> -->
         </nav>
     </header>
+    <!-- <div id="google-map" style="width:300px; height:300px;"> -->
 
+    </div>
     <div class="popup-group">
         <div class="login-popup">
             <span class="icon-close-login">

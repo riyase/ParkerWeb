@@ -13,13 +13,18 @@ bg: https://unsplash.com/photos/Nyvq2juw4_o
 }
 html {
     height: 89vh;
+    width: 98vw;
+    padding-top: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 50px;
 }
 #home-body {
     /*display: flex;
     justify-content: center;
     align-items: center;*/
-    
     height: 100%;
+    width: 100%;
     background: url('/spare_park/img/bg-pedro-lastra-unsplash.jpg') no-repeat;
 }
 

@@ -162,3 +162,12 @@ $(document).ready(function() {
 
 });
 //Continue with registger
+
+// function fetchMap() {
+//     var mapProperties = {
+//         center: new google.map.Latlng(51.508742, -0.120850),
+//         zoon: 10
+//     };
+
+//     var map = new google.maps.Map(document.getElementById("google-map"), mapProperties);
+// }
