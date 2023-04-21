@@ -57,43 +57,35 @@
                 <form id="form-add-space" action="#">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-name" type="text" required>
-                        <label for="">Space name</label>
+                        <input id="popup-space-name" type="text" placeholder="Space name" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-type" type="text" required>
-                        <label for="">Space type</label>
+                        <input id="popup-space-type" type="text" placeholder="Space type" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-rate" type="text" required>
-                        <label for="">Hourly rate</label>
+                        <input id="popup-space-rate" type="text" placeholder="Hourly rate" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-address" type="text" required>
-                        <label for="">Address</label>
+                        <input id="popup-space-address" type="text" placeholder="Address" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-postcode" type="text" required>
-                        <label for="">Post code</label>
+                        <input id="popup-space-postcode" type="text" placeholder="Post code" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-latitude" type="text" required>
-                        <label for="">Latitude</label>
+                        <input id="popup-space-latitude" type="text" placeholder="Latitude" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-longitude" type="text" required>
-                        <label for="">Longitude</label>
+                        <input id="popup-space-longitude" type="text" placeholder="Longitude" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-description" type="text" required>
-                        <label for="">Description</label>
+                        <input id="popup-space-description" type="text" placeholder="Description" required>
                     </div>
                     
                     <button type="submit" class="popup-btn" id="popup-btn-add-space">Add Space</button>

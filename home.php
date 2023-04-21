@@ -20,11 +20,12 @@ $yoyo = '{"name": "riyas"}';
     <title>Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/spare_park/common/css/common.css">
-    <link rel="stylesheet" href="/spare_park/home/home.css">
+    <link rel="stylesheet" href="/spare_park/home.css">
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="home.js"></script>
     <script src="/spare_park/owner/owner.js"></script>
+    <script src="/spare_park/driver/driver.js"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGsGonLWTkKhOE9xCVlM-N0EFaLHk4DvI&callback=fetchMap"></script> -->
 
 </head>

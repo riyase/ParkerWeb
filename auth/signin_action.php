@@ -26,7 +26,6 @@ if ($count == 1) {
     $_SESSION["logged_in"] = $logged_in;
     $_SESSION["user_id"] = $rows['id'];
     $_SESSION["username"] = $username;
-    //header("location: /spare_park/home/home.php");
 }
 
 mysqli_close($connection);

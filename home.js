@@ -15,7 +15,6 @@ $(document).ready(function() {
         success: function(response) {
             //Response is already parsed to json becase 'application/json' is set on php side!
             //var parsedRespose = jQuery.parseJSON(response);
-            //alert( obj.name === "John" );
             if (response.logged_in) {
                 console.log("show logOut!");
                 $(".btn-owner").show();
@@ -34,6 +33,7 @@ $(document).ready(function() {
         $(".btn-owner").removeClass("active");
         $("#owner-layout").hide();
         $("#driver-layout").show();
+        $("#driver-layout").load("/spare_park/driver/driver.php"); 
     });
     $(".btn-owner").click(function() {
         $(this).addClass("active"); 
@@ -102,7 +102,6 @@ $(document).ready(function() {
                     $(".btn-owner").show();
                     $(".btn-driver").show();
                     $(".btn-logout").show();
-                    //window.location = "/spare_park/home/home.php"
                 } else {
                     console.log("login failed!");
                     alert("Invalid User name or Password!");
@@ -137,7 +136,6 @@ $(document).ready(function() {
             context: document.body,
             success: function(response) {
                 console.log("register:" + response.logged_in);
-                //console.log("register data:" + response.data);
                 if (response.logged_in) {
                     console.log("register success");
                     $(".register-popup").hide();
@@ -146,7 +144,6 @@ $(document).ready(function() {
                     $(".btn-owner").show();
                     $(".btn-driver").show();
                     $(".btn-logout").show();
-                    //window.location = "/spare_park/home/home.php"
                 } else {
                     console.log("register failed!");
                     alert("register failed!");

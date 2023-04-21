@@ -1,0 +1,120 @@
+#driver-root-container {
+    width: 100%;
+    height: 100%;
+    margin: 10px;
+    position: relative;
+}
+#driver-container {
+    width: 100%;
+    height: 100%;
+    background: #FF0;
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+}
+#driver-master {
+    width: 30%;
+    height: 100%;
+    background: rgb(255, 0, 21);
+    display: flex;
+    flex-direction: column;
+}
+#driver-detail {
+    width: 70%;
+    height: 100%;
+    min-height: 400px;
+    padding: 10px;
+}
+
+#btn-driver-search {
+    width: 100%;
+    height: 45px;
+    margin-top: 10px;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+#list-search-result {
+    /* height: 100%; */
+    width: 100%;
+    margin: 0px;
+    padding: 8px;
+    background: #EEE;
+    flex: 1;
+}
+
+.input-box {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+.input-box input {
+    flex: 1;
+    height: 40px;
+    background: transparent;
+    border: none; 
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+    /* padding: 0 35px 0 5px; */
+}
+.input-box .search-form-button {
+    width: 35px;
+    height: 35px;
+}
+
+.space-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
+.space-item-type {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    margin: 2px 2px;
+    padding: 2px;
+}
+.space-name-address {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    height: 100%;
+}
+.space-name {
+    font-size: 1.1em;
+    margin: 2px;
+}
+.space-address {
+    font-size: 0.9em;
+    color: gray;
+    margin: 2px;
+}
+
+#space-detail-name-edit {
+    display: flex;
+    flex-direction: row;
+}
+#space-detail-name {
+    flex: 1;
+}
+#btn-update-space {
+
+}
+/*.btn-remove-space {*/
+/*    width: 35px;*/
+/*    height: 35px;*/
+/*    padding: 6px 12px;*/
+/*    cursor: pointer;*/
+/*}*/
+
+
