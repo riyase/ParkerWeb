@@ -60,12 +60,21 @@
                         <input id="popup-space-name" type="text" placeholder="Space name" required>
                     </div>
                     <div class="input-box">
-                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-type" type="text" placeholder="Space type" required>
+                        
+                        <select name="popup-space-type" id="popup-space-type" place>
+                            <option value="" disabled selected>Select Space type</option>
+                            <!-- <option hidden>Select Space type</option> -->
+                            <option value="car">Car</option>
+                            <option value="motor_cycle">Motor Cycle</option>
+                            <option value="truck">Truck</option>
+                            <option value="van">Van</option>
+                            <option value="bus">Bus</option>
+                        </select>
+                        <!-- <input id="popup-space-type" type="text" placeholder="Space type" required> -->
                     </div>
                     <div class="input-box">
-                        <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input id="popup-space-rate" type="text" placeholder="Hourly rate" required>
+                        <!-- <span class="icon"><ion-icon name="mail-outline"></ion-icon></span> -->
+                        <input id="popup-space-rate" type="number" placeholder="Hourly rate" required>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>

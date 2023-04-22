@@ -16,8 +16,8 @@ $timeTo = $_POST['timeTo'];
 
 $newTimeFrom = date("Y-m-d H:i:s", strtotime($timeFrom));
 $newTimeTo = date("Y-m-d H:i:s", strtotime($timeTo));
-//$newTimeFrom = "2023-04-20 11:00:00";
-//$newTimeTo = "2023-04-20 12:19:00";
+//$newTimeFrom = "2023-05-20 11:00:00";
+//$newTimeTo = "2023-05-20 12:19:00";
 
 $sqlOverlapSpacesQuery = "SELECT DISTINCT (space_id) FROM `booking` 
     WHERE (

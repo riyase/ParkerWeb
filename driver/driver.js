@@ -1,6 +1,12 @@
 $(document).ready(function() {
     console.log("driver js loaded!");
 
+    // var now = new Date();
+    // now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    // now.setMilliseconds(null)
+    // now.setSeconds(null)
+    // document.getElementById('input-driver-time-from').value = now.toISOString().slice(0, -1);
+
     $("#btn-driver-search").click(function() {
 
         const location = $("#input-driver-location").val();
@@ -27,7 +33,7 @@ $(document).ready(function() {
                 }
 
                 const spaceArray = response.spaces;
-                showMarkers(spaceArray);
+                //showMarkers(spaceArray);
 
                 for (let i=0; i<spaceArray.length; i++) {
                     const space = spaceArray[i];
@@ -134,17 +140,39 @@ $(document).ready(function() {
 });
 
 let map;
-
+        
 async function initMap() {
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
 
     map = new Map(document.getElementById("driver-detail"), {
         center: { lat: -34.397, lng: 150.644 },
-        zoom: 18,
+        zoom: 8,
     });
+    var myLatLng = {
+        lat: 10.1364,
+        lng: -80.2514
+    };
+    var myLatLng2 = {
+        lat: 10.2374,
+        lng: -80.3614
+    };
+    var marker = new google.maps.Marker({
+        position: myLatLng,
+        title: 'new marker',
+        draggable: false,
+        map: map
+    });
+    var marker2 = new google.maps.Marker({
+        position: myLatLng2,
+        title: 'new marker',
+        draggable: false,
+        map: map
+    });
+    map.setCenter(marker.getPosition());
 }
 
+SHOW ADD SPACE in seperate html page and pick location from popup
 
 function showMarkers(spaces) {
     console.log("showMarkers()");

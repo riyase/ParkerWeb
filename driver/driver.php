@@ -25,11 +25,13 @@
                     <ion-icon class="search-form-button" name="location-outline"></ion-icon>
                 </div>
                 <div class="input-box">
-                    <input id="input-driver-time-from" type="datetime-local" placeholder="From" required>
+                    <input id="input-driver-time-from" type="datetime-local" value="<?php echo date('Y-m-d\TH:i'); ?>">
+                    <!-- <input id="input-driver-time-from" type="datetime-local" placeholder="From" required> -->
                     <!-- <ion-icon id="icon-time-from" class="search-form-button" name="time-outline"></ion-icon> -->
                 </div>
                 <div class="input-box">
-                    <input id="input-driver-time-to" type="datetime-local" placeholder="To" required>
+                    <input id="input-driver-time-to" type="datetime-local" value="<?php echo date('Y-m-d\TH:i'); ?>">
+                    <!-- <input id="input-driver-time-to" type="datetime-local" placeholder="To" required> -->
                     <!-- <ion-icon id="icon-time-to" class="search-form-button" name="time-outline"></ion-icon> -->
                 </div>
                 <button id="btn-driver-search">Search</button>

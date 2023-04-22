@@ -22,9 +22,30 @@
                 center: { lat: -34.397, lng: 150.644 },
                 zoom: 8,
             });
+            var myLatLng = {
+                lat: 10.1364,
+                lng: -80.2514
+            };
+            var myLatLng2 = {
+                lat: 10.2374,
+                lng: -80.3614
+            };
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                title: 'new marker',
+                draggable: false,
+                map: map
+            });
+            var marker2 = new google.maps.Marker({
+                position: myLatLng2,
+                title: 'new marker',
+                draggable: false,
+                map: map
+            });
+            map.setCenter(marker.getPosition());
         }
 
-        initMap();
+        //initMap();
     </script>
 
     
