@@ -14,7 +14,7 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- DatePicker library end -->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeEeKz4H-KQTFABe1UTs9h5KUlpqsZ10Q&sensor=false&callback=initMap"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeEeKz4H-KQTFABe1UTs9h5KUlpqsZ10Q&callback=initMap"></script>
 </head>
 <body id="driver-body">
     <div id="driver-root-container">

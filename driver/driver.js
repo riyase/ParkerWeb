@@ -33,7 +33,8 @@ $(document).ready(function() {
                 }
 
                 const spaceArray = response.spaces;
-                //showMarkers(spaceArray);
+                console.log("spaces length:" + response.len);
+                showMarkers(spaceArray);
 
                 for (let i=0; i<spaceArray.length; i++) {
                     const space = spaceArray[i];
@@ -99,8 +100,9 @@ $(document).ready(function() {
                         
                     //var item = $("<p>").append(spaceArray[i].name);
                     $("#list-search-result").append(item);
+                    console.log("add space :" + spaceArray[i].name);
                 }
-                console.log("get spaces response:" + spaceArray);
+                
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("Get spaces error!, xhr.status:" . xhr.status);
@@ -139,65 +141,42 @@ $(document).ready(function() {
     
 });
 
-let map;
+var map;
         
 async function initMap() {
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
 
+
     map = new Map(document.getElementById("driver-detail"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
+        center: { lat: 51.507904, lng: -0.075226 },
+        zoom: 14,
     });
-    var myLatLng = {
-        lat: 10.1364,
-        lng: -80.2514
-    };
-    var myLatLng2 = {
-        lat: 10.2374,
-        lng: -80.3614
-    };
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        title: 'new marker',
-        draggable: false,
-        map: map
-    });
-    var marker2 = new google.maps.Marker({
-        position: myLatLng2,
-        title: 'new marker',
-        draggable: false,
-        map: map
-    });
-    map.setCenter(marker.getPosition());
+
 }
 
-SHOW ADD SPACE in seperate html page and pick location from popup
+//SHOW ADD SPACE in seperate html page and pick location from popup
 
 function showMarkers(spaces) {
     console.log("showMarkers()");
-    //const { Map } =  google.maps.importLibrary("maps");
 
     for (let i=0; i<spaces.length; i++) {
-        /*var myLatLng = {
-            lat: spaces[i].latitude,
-            lng: spaces[i].longitude
+        var myLatLng = {
+            lat: parseFloat(spaces[i].latitude),
+            lng: parseFloat(spaces[i].longitude)
         };
         var marker = new google.maps.Marker({
             position: myLatLng,
             map: map
-        });*/
+        });
+        marker.addListener("click", () => {
+            marker.set("spaceId", spaces[i].id);
+            console.log("marker click added with id:" + marker.get("spaceId"));
+        });
+        
+        if (i === 0) {
+            map.setCenter(marker.getPosition());
+        }
     }
-    var myLatLng = {
-        lat: 10.1364,
-        lng: -80.2514
-    };
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        title: 'new marker',
-        draggable: true,
-        map: map
-    });
-    map.setCenter(marker.getPosition());
 
 }

@@ -11,8 +11,10 @@ $db = "spare_park";
 $connection = mysqli_connect($server, $username, $password, $db) or die ("Not connected!");
 
 $location = $_GET['location'];
-$timeFrom = $_POST['timeFrom'];
-$timeTo = $_POST['timeTo'];
+$timeFrom = $_GET['timeFrom'];
+$timeTo = $_GET['timeTo'];
+//$timeFrom = '2023-04-22T19:05';
+//$timeTo = '2023-04-22T19:05';
 
 $newTimeFrom = date("Y-m-d H:i:s", strtotime($timeFrom));
 $newTimeTo = date("Y-m-d H:i:s", strtotime($timeTo));
@@ -35,7 +37,8 @@ while ($rows = mysqli_fetch_array($sqlOverlapSpaces, MYSQLI_ASSOC)) {
 $excludeSpaceIds = join(',', $excludeSpaces);
 //Exclude all spaces that inculdes the above 
 
-$sql = "SELECT * FROM `space` WHERE id NOT IN ('$excludeSpaceIds') AND (`post_code` LIKE '%{$location}%' OR `address` LIKE '%{$location}%')";
+$sql = "SELECT * FROM `space` WHERE id NOT IN ('$excludeSpaceIds') 
+AND (`name` LIKE '%{$location}%' OR `post_code` LIKE '%{$location}%' OR `address` LIKE '%{$location}%')";
 
 $cursor = mysqli_query($connection, $sql);
 $count = mysqli_num_rows($cursor);
@@ -54,7 +57,7 @@ while ($spacePointer = mysqli_fetch_array($cursor, MYSQLI_ASSOC)) {
         'description' => $spacePointer["description"]);
 }
 mysqli_close($connection);
-$response = array("status" => "success", "spaces" => $spaces);
+$response = array("status" => "success", "len" => $count, "spaces" => $spaces);
 header("Content-Type: application/json");
 echo json_encode($response);
 ?>
