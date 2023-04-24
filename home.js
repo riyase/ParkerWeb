@@ -1,22 +1,24 @@
 $(document).ready(function() {
     
-    //console.log("hide login and logout!");
     $(".btn-owner").hide();
     $(".btn-driver").hide();
     $(".btn-login").hide();
     $(".btn-logout").hide();
     $(".login-popup").hide();
     $(".register-popup").hide();
-    $("#owner-layout").hide();
-    $("#driver-layout").hide();
+
+    console.log("home window location:" + window.location.href);
+    if (window.location.href == "http://localhost/spare_park/home.php") {
+        $("#driver-layout").load("/spare_park/driver/driver.php"); 
+        console.log("We are in home!");
+    }
 
     $.ajax({ url: "/spare_park/auth/login_status.php",
         context: document.body,
         success: function(response) {
-            //Response is already parsed to json becase 'application/json' is set on php side!
+            //Response is already parsed to json because 'application/json' is set on php side!
             //var parsedRespose = jQuery.parseJSON(response);
             if (response.logged_in) {
-                console.log("show logOut!");
                 $(".btn-owner").show();
                 $(".btn-driver").show();
                 $(".btn-logout").show();
@@ -28,26 +30,27 @@ $(document).ready(function() {
         }
     });
     
+    $(".logo").click(function() {
+        window.location = "/spare_park/home.php";
+    });
     $(".btn-driver").click(function() {
         $(this).addClass("active");
         $(".btn-owner").removeClass("active");
-        $("#owner-layout").hide();
-        $("#driver-layout").show();
-        $("#driver-layout").load("/spare_park/driver/driver.php"); 
+        window.location = "/spare_park/home.php";
     });
     $(".btn-owner").click(function() {
         $(this).addClass("active"); 
         $(".btn-driver").removeClass("active");
-        $("#driver-layout").hide();
-        $("#owner-layout").show();
         //add owner html
         //https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
         //generate list
         //https://stackoverflow.com/questions/5881033/how-to-generate-ul-li-list-from-string-array-using-jquery
-        $("#owner-layout").load("/spare_park/owner/owner.php"); 
+        //$("#owner-layout").load("/spare_park/owner/owner.php"); 
+        window.location = "/spare_park/owner/owner.php";
     });
     $(".btn-login").click(function() {
         $(".login-popup").show();
+        console.log("show login popup!");
     });
     $(".btn-logout").click(function() {
         console.log("logging out");
@@ -56,8 +59,6 @@ $(document).ready(function() {
             success: function(response) {
                 console.log("logging out success!");
                 if (response.logged_out) {
-                    $("#owner-layout").hide();
-                    $("#driver-layout").hide();
                     $(".btn-owner").hide();
                     $(".btn-driver").hide();
                     $(".btn-logout").hide();
@@ -70,8 +71,6 @@ $(document).ready(function() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("logging out error!");
-                //alert(xhr.status);
-                //alert(thrownError);
             }
         });
     });
@@ -102,6 +101,7 @@ $(document).ready(function() {
                     $(".btn-owner").show();
                     $(".btn-driver").show();
                     $(".btn-logout").show();
+                    window.location ="/spare_park/home.php";
                 } else {
                     console.log("login failed!");
                     alert("Invalid User name or Password!");
@@ -109,8 +109,6 @@ $(document).ready(function() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("logging in error!, xhr.status:" . xhr.status);
-                //alert(xhr.status);
-                //alert(thrownError);
             }
         });
     });
@@ -151,20 +149,8 @@ $(document).ready(function() {
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("register error!");
-                //alert(xhr.status);
-                //alert(thrownError);
             }
         });
     });
 
 });
-//Continue with registger
-
-// function fetchMap() {
-//     var mapProperties = {
-//         center: new google.map.Latlng(51.508742, -0.120850),
-//         zoon: 10
-//     };
-
-//     var map = new google.maps.Map(document.getElementById("google-map"), mapProperties);
-// }

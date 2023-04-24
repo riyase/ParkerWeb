@@ -1,7 +1,30 @@
 $(document).ready(function() {
 
     console.log("Owner js executed!");
+    
     $("#popup-add-space").hide();
+
+    $(".btn-owner").hide();
+    $(".btn-driver").hide();
+    $(".btn-login").hide();
+    $(".btn-logout").hide();
+
+    $.ajax({ url: "/spare_park/auth/login_status.php",
+        context: document.body,
+        success: function(response) {
+            if (response.logged_in) {
+                $(".btn-owner").show();
+                $(".btn-driver").show();
+                $(".btn-logout").show();
+            } else {
+                console.log("show logIn!");
+                $(".btn-login").show();
+            }
+        }
+    });
+    $(".btn-driver").click(function() {
+        window.location = "/spare_park/home.php";
+    });
 
     //Populate spaces
     $.ajax({ url: "/spare_park/owner/get_my_spaces.php",

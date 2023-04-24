@@ -1,16 +1,3 @@
-<?php
-
-//session_start();
-
-//if user is not logged in redirect him to the login page
-/*if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-    header("location: /spare_park/auth/signin.php");
-    exit;
-}*/
-$logged_in = isset($_SESSION["logged_in"]) && $_SESSION["logged_in"] === true;
-$yoyo = '{"name": "riyas"}';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +11,6 @@ $yoyo = '{"name": "riyas"}';
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="home.js"></script>
-    <script src="/spare_park/owner/owner.js"></script>
     <script src="/spare_park/driver/driver.js"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGsGonLWTkKhOE9xCVlM-N0EFaLHk4DvI&callback=fetchMap"></script> -->
 
@@ -37,12 +23,6 @@ $yoyo = '{"name": "riyas"}';
             <a class="btn-owner" href="#">Owner</a>
             <button class="btn-login">Login</button>
             <a href="#" class="btn-logout">Logout</a>
-            <!-- <?php if ($logged_in): ?> -->
-                
-            <!-- <?php else: ?> -->
-                <!-- <button class="btn-login">Login</button> -->
-                
-            <!-- <?php endif; ?> -->
         </nav>
     </header>
     <!-- <div id="google-map" style="width:300px; height:300px;"> -->
@@ -115,9 +95,6 @@ $yoyo = '{"name": "riyas"}';
                 </form>
             </div>
         </div>
-    </div>
-    <div id="owner-layout">
-        <!-- <p>Owner Layout!</p> -->
     </div>
     <div id="driver-layout">
         <!-- <p>Driver Layout!</p> -->

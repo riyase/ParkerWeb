@@ -20,6 +20,7 @@
     /* transform: scale(0);
     transition: transform .5s ease, height .2s ease; */
     margin: auto;
+    z-index: 10;
 }
 .register-popup {
     height: 540px;

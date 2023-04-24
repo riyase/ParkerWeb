@@ -98,9 +98,7 @@ $(document).ready(function() {
                         .append(spaceNameAddress)
                         .append(spaceDeleteIcon);
                         
-                    //var item = $("<p>").append(spaceArray[i].name);
                     $("#list-search-result").append(item);
-                    console.log("add space :" + spaceArray[i].name);
                 }
                 
             },
@@ -138,6 +136,16 @@ $(document).ready(function() {
             }
         });
     });
+
+    $('#list-search-result').on('click', '.space-item', function() {
+        const spaceId = $(this).attr("id");
+        const itemPos = $(this).attr('position');
+        console.log("btn-space-item with position:"+ itemPos + ", id:" + spaceId +" clicked!");
+        localStorage.setItem("spaceId", spaceId);
+        localStorage.setItem("bookingStartTime", $("#input-driver-time-from").val());
+        localStorage.setItem("bookingEndTime", $("#input-driver-time-to").val());
+        window.location = "/spare_park/driver/booking/space_booking.php";
+    });
     
 });
 
@@ -146,13 +154,10 @@ var map;
 async function initMap() {
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
-
-
-    map = new Map(document.getElementById("driver-detail"), {
+    map = new Map(document.getElementById("map-view"), {
         center: { lat: 51.507904, lng: -0.075226 },
         zoom: 14,
     });
-
 }
 
 //SHOW ADD SPACE in seperate html page and pick location from popup
@@ -171,7 +176,11 @@ function showMarkers(spaces) {
         });
         marker.addListener("click", () => {
             marker.set("spaceId", spaces[i].id);
+            localStorage.setItem("spaceId", spaces[i].id);
+            localStorage.setItem("bookingStartTime", $("#input-driver-time-from").val());
+            localStorage.setItem("bookingEndTime", $("#input-driver-time-to").val());
             console.log("marker click added with id:" + marker.get("spaceId"));
+            window.location = "/spare_park/driver/booking/space_booking.php";
         });
         
         if (i === 0) {

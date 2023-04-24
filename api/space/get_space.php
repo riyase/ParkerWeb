@@ -8,7 +8,9 @@ $db = "spare_park";
     
 $connection = mysqli_connect($server, $username, $password, $db) or die ("Not connected!");
 
-$sql = "SELECT FROM space WHERE id = '$_POST[id]'";
+$spaceId = $_GET['id'];
+//$spaceId = 16;
+$sql = "SELECT * FROM space WHERE id = '$spaceId'";
 
 $cursor = mysqli_query($connection, $sql);
 $count = mysqli_num_rows($cursor);
@@ -17,15 +19,16 @@ $space = array();
 if ($count == 1) {
     $row = mysqli_fetch_array($cursor, MYSQLI_ASSOC);
     $space = array(
-        'id' => $spacePointer["id"], 
-        'name' => $spacePointer["name"],
-        'status' => $spacePointer["status"],
-        'hour_rate' => $spacePointer["hour_rate"],
-        'type' => $spacePointer["type"],
-        'latitude' => $spacePointer["latitude"],
-        'longitude' => $spacePointer["longitude"],
-        'post_code' => $spacePointer["post_code"],
-        'description' => $spacePointer["description"]);
+        'id' => $row["id"], 
+        'name' => $row["name"],
+        'status' => $row["status"],
+        'hour_rate' => $row["hour_rate"],
+        'type' => $row["type"],
+        'address' => $row["address"],
+        'latitude' => $row["latitude"],
+        'longitude' => $row["longitude"],
+        'post_code' => $row["post_code"],
+        'description' => $row["description"]);
 }
 mysqli_close($connection);
 //GET SPACE and return it to show space details

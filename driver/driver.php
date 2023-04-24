@@ -14,6 +14,7 @@
     <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- DatePicker library end -->
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <!-- Google maps -->
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeEeKz4H-KQTFABe1UTs9h5KUlpqsZ10Q&callback=initMap"></script>
 </head>
 <body id="driver-body">
@@ -38,7 +39,7 @@
                 
                 <ul id="list-search-result"></ul>
             </div>
-            <div id="driver-detail">
+            <div id="map-view">
             </div>
         </div>
     </div>
