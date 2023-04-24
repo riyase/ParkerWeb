@@ -1,29 +1,15 @@
 $(document).ready(function() {
 
     console.log("Owner js executed!");
-    
-    $("#popup-add-space").hide();
 
-    $(".btn-owner").hide();
-    $(".btn-driver").hide();
-    $(".btn-login").hide();
-    $(".btn-logout").hide();
-
-    $.ajax({ url: "/spare_park/auth/login_status.php",
-        context: document.body,
-        success: function(response) {
-            if (response.logged_in) {
-                $(".btn-owner").show();
-                $(".btn-driver").show();
-                $(".btn-logout").show();
-            } else {
-                console.log("show logIn!");
-                $(".btn-login").show();
-            }
-        }
+    $(".logo").click(function() {
+        window.location = "/spare_park/home.php";
     });
     $(".btn-driver").click(function() {
         window.location = "/spare_park/home.php";
+    });
+    $(".btn-bookings").click(function() {
+        window.location = "/spare_park/bookings/my_bookings.php";
     });
 
     //Populate spaces
@@ -92,9 +78,12 @@ $(document).ready(function() {
                         .append(spaceType)
                         .append(spaceNameAddress)
                         .append(spaceDeleteIcon);
+                    var liItem = $("<li>")
+                        .attr("class", "li-space-item")
+                        .append(item);
                         
                     //var item = $("<p>").append(spaceArray[i].name);
-                    $("#my-spaces").append(item);
+                    $("#my-spaces").append(liItem);
                 }
                 console.log("get spaces response:" + spaceArray);
             },
@@ -105,17 +94,7 @@ $(document).ready(function() {
     
     $("#btn-new-space").click(function() {
         console.log("btn-add-space is clicked!");
-        $("#popup-add-space-title").text("Add Space");
-        $("#popup-btn-add-space").text("Add Space");
-        $("#popup-space-name").val("");
-        $("#popup-space-type").val("");
-        $("#popup-space-rate").val("");
-        $("#popup-space-postcode").val("");
-        $("#popup-space-address").val("");
-        $("#popup-space-latitude").val("");
-        $("#popup-space-longitude").val("");
-        $("#popup-space-description").val("");
-        $("#popup-add-space").show();
+        window.location = "/spare_park/owner/space/add_space.php"
     });
 
     $("#btn-update-space").click(function() {

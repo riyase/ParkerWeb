@@ -33,14 +33,10 @@ $(document).ready(function() {
     $(".logo").click(function() {
         window.location = "/spare_park/home.php";
     });
-    $(".btn-driver").click(function() {
-        $(this).addClass("active");
-        $(".btn-owner").removeClass("active");
-        window.location = "/spare_park/home.php";
+    $(".btn-bookings").click(function() {
+        window.location = "/spare_park/bookings/my_bookings.php";
     });
     $(".btn-owner").click(function() {
-        $(this).addClass("active"); 
-        $(".btn-driver").removeClass("active");
         //add owner html
         //https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
         //generate list

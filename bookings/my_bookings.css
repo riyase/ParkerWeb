@@ -1,0 +1,61 @@
+.my-booking-container {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 8px;
+    background: #EEE;
+    flex: 1;
+}
+
+#my-bookings {
+    background: rgb(245, 245, 242);
+}
+.li-space-item {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+.booking-item {
+    display: flex;
+    align-items: center;
+}
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
+.space-item-type {
+    width: 70px;
+    height: 70px;
+    background-color: white;
+    margin: 2px 2px;
+    padding: 2px;
+}
+.space-name-time {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin: 8px;
+    height: 100%;
+}
+.space-name {
+    font-size: 1.1em;
+    margin: 2px;
+}
+.space-time {
+    font-size: 0.9em;
+    color: gray;
+    margin: 2px;
+}
+
+#space-detail-name-edit {
+    display: flex;
+    flex-direction: row;
+}
+#space-detail-name {
+    flex: 1;
+}
+
+.booking-status-action {
+    display: flex;
+    align-items: center;
+}
+.btn-status-action {
+    
+}

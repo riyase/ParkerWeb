@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 
+
     //Implement book space by passing space id to space details screen
     const spaceId = localStorage.getItem("spaceId");
     const bookingStartTime = localStorage.getItem("bookingStartTime");
@@ -13,6 +14,10 @@ $(document).ready(function() {
     $(".btn-login").hide();
     $(".btn-logout").hide();
 
+    $(".logo").click(function() {
+        window.location = "/spare_park/home.php";
+    });
+    
     $.ajax({ url: "/spare_park/auth/login_status.php",
         context: document.body,
         success: function(response) {

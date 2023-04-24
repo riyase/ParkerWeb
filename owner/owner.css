@@ -46,17 +46,32 @@
     font-weight: 500;
 }
 
-#my-spaces {
-    /* height: 100%; */
+.my-spaces-container {
+    height: 100%;
     width: 100%;
     margin: 0px;
     padding: 8px;
     background: #EEE;
     flex: 1;
 }
+#my-spaces {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 8px;
+    background: #EEE;
+    flex: 1;
+    overflow: hidden;
+    overflow-y: scroll;
+}
 
 #space-bookings {
     background: #FF0;
+}
+.li-space-item {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
 }
 .space-item {
     display: flex;
