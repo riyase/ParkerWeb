@@ -1,7 +1,8 @@
 $(document).ready(function() {
     
-    $(".btn-owner").hide();
     $(".btn-driver").hide();
+    $(".btn-bookings").hide();
+    $(".btn-owner").hide();
     $(".btn-login").hide();
     $(".btn-logout").hide();
     $(".login-popup").hide();
@@ -19,8 +20,9 @@ $(document).ready(function() {
             //Response is already parsed to json because 'application/json' is set on php side!
             //var parsedRespose = jQuery.parseJSON(response);
             if (response.logged_in) {
-                $(".btn-owner").show();
                 $(".btn-driver").show();
+                $(".btn-owner").show();
+                $(".btn-bookings").show();
                 $(".btn-logout").show();
             } else {
                 console.log("show logIn!");
@@ -37,11 +39,6 @@ $(document).ready(function() {
         window.location = "/spare_park/bookings/my_bookings.php";
     });
     $(".btn-owner").click(function() {
-        //add owner html
-        //https://stackoverflow.com/questions/8988855/include-another-html-file-in-a-html-file
-        //generate list
-        //https://stackoverflow.com/questions/5881033/how-to-generate-ul-li-list-from-string-array-using-jquery
-        //$("#owner-layout").load("/spare_park/owner/owner.php"); 
         window.location = "/spare_park/owner/owner.php";
     });
     $(".btn-login").click(function() {

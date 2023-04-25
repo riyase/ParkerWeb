@@ -12,8 +12,7 @@
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="space_booking.js"></script>
-    <!-- Google maps -->
-    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeEeKz4H-KQTFABe1UTs9h5KUlpqsZ10Q&callback=initMap"></script>
+    
 
 </head>
 <body id="space-booking-body">
@@ -21,7 +20,7 @@
         <h2 class="logo">Spare Park</h2>
         <nav class="navbar">
             <a class="btn-driver active" href="#">Driver</a>
-            <a class="btn-bookings" href="#">Bookings</a>
+            <a class="btn-bookings" href="#">My Bookings</a>
             <a class="btn-owner" href="#">Owner</a>
             <button class="btn-login">Login</button>
             <a href="#" class="btn-logout">Logout</a>
@@ -54,7 +53,8 @@
             </div>
         </div>
     <!-- </div> -->
-    
+    <!-- Google maps -->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBeEeKz4H-KQTFABe1UTs9h5KUlpqsZ10Q&callback=initMap"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

@@ -9,21 +9,22 @@ $(document).ready(function() {
     $("#input-driver-time-from").val(bookingStartTime);
     $("#input-driver-time-to").val(bookingEndTime);
     console.log("space details js. spaceId:" + spaceId + ", start:" + bookingStartTime + ", end:" + bookingEndTime);
-    $(".btn-owner").hide();
+    
     $(".btn-driver").hide();
+    $(".btn-bookings").hide();
+    $(".btn-owner").hide();
     $(".btn-login").hide();
     $(".btn-logout").hide();
 
-    $(".logo").click(function() {
-        window.location = "/spare_park/home.php";
-    });
+    
     
     $.ajax({ url: "/spare_park/auth/login_status.php",
         context: document.body,
         success: function(response) {
             if (response.logged_in) {
-                $(".btn-owner").show();
                 $(".btn-driver").show();
+                $(".btn-bookings").show();
+                $(".btn-owner").show();
                 $(".btn-logout").show();
             } else {
                 console.log("show logIn!");
@@ -33,6 +34,12 @@ $(document).ready(function() {
     });
     $(".logo").click(function() {
         window.location = "/spare_park/home.php";
+    });
+    $(".btn-bookings").click(function() {
+        window.location = "/spare_park/bookings/my_bookings.php";
+    });
+    $(".btn-owner").click(function() {
+        window.location = "/spare_park/owner/owner.php";
     });
 
     $.ajax({ url: "/spare_park/api/space/get_space.php",
@@ -116,26 +123,25 @@ var map;
 async function initMap() {
     //@ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
+    map = new Map(document.getElementById("space-map-view"), {
+        //center: { lat: latitude, lng:  longitude},
+        center: { lat: 51.507904, lng: -0.075226},
+        zoom: 14
+    });
     
 }
 
 function showMarker(space) {
     console.log("showMarker()");
-    if (map === undefined) {
-        map = new Map(document.getElementById("space-map-view"), {
-            //center: { lat: latitude, lng:  longitude},
-            center: { lat: 51.507904, lng: -0.075226},
-            zoom: 14
-        });
-    }
-    // const latitude = parseFloat(space.latitude);
-    // const longitude = parseFloat(space.longitude);
+    
+    const latitude = parseFloat(space.latitude);
+    const longitude = parseFloat(space.longitude);
     
     
-    // var marker = new google.maps.Marker({
-    //     position: { lat: latitude, lng:  longitude},
-    //     map: map
-    // });
+    var marker = new google.maps.Marker({
+        position: { lat: latitude, lng:  longitude},
+        map: map
+    });
     
-    // map.setCenter(marker.getPosition());
+    map.setCenter(marker.getPosition());
 }

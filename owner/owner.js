@@ -159,9 +159,34 @@ $(document).ready(function() {
             .attr("space-latitude", spaceLatitude)
             .attr("space-longitude", spaceLongitude)
             .attr("space-description", spaceDescription);
+
+        let typeSrc = "/spare_park/img/vehicle-car.png";
+        switch(spaceType) {
+            case "motor_cycle":
+                typeSrc = "/spare_park/img/vehicle-motor-cycle.png";
+                break;
+            case "bus":
+                typeSrc = "/spare_park/img/vehicle-bus.png";
+                break;
+            case "van":
+                typeSrc = "/spare_park/img/vehicle-van.png";
+                break;    
+            case "truck":
+                typeSrc = "/spare_park/img/vehicle-truck.png";
+                break;        
+            default:
+                typeSrc = "/spare_park/img/vehicle-car.png";
+        }
+        $("#space-type-name").text(spaceType);
+        $("#space-type-icon").attr("src", typeSrc);    
         $("#space-detail-name").text(spaceName);
-        $("#space-detail-description").text(spaceDescription);
-        $("#space-detail-address").text(spaceAddress);
+        $("#space-rate").text("£" + spaceHourRate + "/HR");
+
+        $("#space-detail-name").text(spaceName);
+        $("#space-address").text(spaceAddress);
+        $("#space-postcode").text(spacePostcode);
+        $("#space-description").text(spaceDescription);
+        showMap(spaceLatitude, spaceLongitude);
     });
 
     $('#my-spaces').on('click', '.btn-remove-space', function() {
@@ -237,4 +262,34 @@ function addSpace(id) {
     });
     
 }
-//Work with owner layout
+
+var map;
+        
+async function initMap() {
+    //@ts-ignore
+    console.log("initMap()");
+    const { Map } = await google.maps.importLibrary("maps");
+    map = new Map(document.getElementById("space-map-view"), {
+        center: { lat: 51.507904, lng: -0.075226 },
+        zoom: 14,
+    });
+}
+
+//SHOW ADD SPACE in seperate html page and pick location from popup
+
+function showMap(lat, lng) {
+    console.log("showMap()");
+
+    
+        var myLatLng = {
+            lat: parseFloat(lat),
+            lng: parseFloat(lng)
+        };
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map
+        });
+        
+        map.setCenter(marker.getPosition());    
+
+}

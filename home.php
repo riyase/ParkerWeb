@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="home.js"></script>
-    <script src="/spare_park/driver/driver.js"></script>
+    <!-- <script src="/spare_park/driver/driver.js"></script> -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGsGonLWTkKhOE9xCVlM-N0EFaLHk4DvI&callback=fetchMap"></script> -->
 
 </head>
@@ -20,10 +20,10 @@
         <h2 class="logo">Spare Park</h2>
         <nav class="navbar">
             <a class="btn-driver active" href="#">Driver</a>
-            <a class="btn-bookings" href="#">Bookings</a>
+            <a class="btn-bookings" href="#">My Bookings</a>
             <a class="btn-owner" href="#">Owner</a>
+            <a class="btn-logout" href="#">Logout</a>
             <button class="btn-login">Login</button>
-            <a href="#" class="btn-logout">Logout</a>
         </nav>
     </header>
     <!-- <div id="google-map" style="width:300px; height:300px;"> -->
