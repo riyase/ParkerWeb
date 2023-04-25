@@ -128,8 +128,8 @@ $(document).ready(function() {
     );
 
     $('#my-bookings').on('click', '.btn-status-action', function() {
-        var bookingId = $(this).attr('id');
-        var bookingStatus = $(this).attr('status');
+        var bookingId = $(this).attr("id");
+        var bookingStatus = $(this).attr("status");
         console.log("btn-remove-booking with id:"+ bookingId + ", status:" + bookingStatus +" clicked!");
 
         if (bookingStatus === 'requested') {

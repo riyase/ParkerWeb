@@ -27,7 +27,7 @@
             <a href="#" class="btn-logout">Logout</a>
         </nav>
     </header>
-    <div id="space-booking-container">
+    <!-- <div id="space-booking-container"> -->
         <div id="space-booking-layout">
             <div id="space-map-view"></div>
             <div id="rate-type-box">
@@ -53,7 +53,7 @@
                 <button id="btn-book-space">Book Space</button>
             </div>
         </div>
-    </div>
+    <!-- </div> -->
     
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

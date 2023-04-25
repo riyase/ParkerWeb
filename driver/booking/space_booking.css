@@ -4,15 +4,13 @@
     background: url('/spare_park/img/bg-pedro-lastra-unsplash.jpg') no-repeat;
 }
 #space-booking-container {
-    display: flex;
-    flex-direction: column;
     padding: 50px 100px;
 }
 #space-booking-layout {
     width: 100%;
     flex: 1;
     padding-bottom: 100px;
-    margin: 10px;
+    margin: auto;
     background: whitesmoke;
     overflow-y: auto;
 }

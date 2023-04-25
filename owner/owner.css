@@ -3,9 +3,11 @@
     height: 100%;
     margin: 10px;
     position: relative;
+    align-items: center;
 }
 #owner-container {
     width: 100%;
+    max-width: 800px;
     height: 100%;
     background: #FF0;
     padding: 4px;
@@ -21,11 +23,13 @@
 #owner-detail {
     width: 70%;
     height: 100%;
-    min-height: 400px;
+    
     padding: 10px;
+    overflow: hidden;
+    overflow-y: scroll;
 }
 #owner-space-details {
-    overflow: scroll;
+    
 }
 #space-detail-map-image {
     width: 100%;
@@ -46,14 +50,14 @@
     font-weight: 500;
 }
 
-.my-spaces-container {
+/*.my-spaces-container {
     height: 100%;
     width: 100%;
     margin: 0px;
     padding: 8px;
     background: #EEE;
     flex: 1;
-}
+}*/
 #my-spaces {
     height: 100%;
     width: 100%;

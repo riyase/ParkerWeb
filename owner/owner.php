@@ -34,9 +34,9 @@
         <div id="owner-container">
             <div id="owner-master">
                 <button id="btn-new-space">Add Space +</button>
-                <div class="my-spaces-container">
+                <!-- <div class="my-spaces-container"> -->
                     <ul id="my-spaces"></ul>
-                </div> 
+                <!-- </div>  -->
             </div>
             <div id="owner-detail">
                 <div id="owner-space-details">

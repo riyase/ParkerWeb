@@ -94,34 +94,30 @@ $(document).ready(function() {
     
     $("#btn-new-space").click(function() {
         console.log("btn-add-space is clicked!");
+        localStorage.removeItem("spaceId");
         window.location = "/spare_park/owner/space/add_space.php"
     });
 
     $("#btn-update-space").click(function() {
-        console.log("btn-update-space is clicked!, id:" + $(this).attr('id'));
-        $("#popup-add-space-title").text("Update Space");
-        $("#popup-btn-add-space").text("Update Space");
-            //.attr('id', $(this).attr('id'));
-
-        $("#popup-btn-add-space").attr('id', $(this).attr('id'));
-
-        $("#popup-space-name").val($(this).attr('space-name'));
-        $("#popup-space-type").val($(this).attr('space-type'));
-        $("#popup-space-rate").val($(this).attr('space-hour-rate'));
-        $("#popup-space-postcode").val($(this).attr('space-postcode'));
-        $("#popup-space-address").val($(this).attr('space-address'));
-        $("#popup-space-latitude").val($(this).attr('space-latitude'));
-        $("#popup-space-longitude").val($(this).attr('space-longitude'));
-        $("#popup-space-description").val($(this).attr('space-description'));
-
-        $("#popup-add-space").show();
+        console.log("btn-update-space is clicked!, id:" + $(this).attr("id"));
+        localStorage.setItem("spaceId", $(this).attr("id"));
+        localStorage.setItem("space-name", $(this).attr("space-name"));
+        localStorage.setItem("space-type", $(this).attr("space-type"));
+        localStorage.setItem("space-hour-rate", $(this).attr("space-hour-rate"));
+        localStorage.setItem("space-postcode", $(this).attr("space-postcode"));
+        localStorage.setItem("space-address", $(this).attr("space-address"));
+        localStorage.setItem("space-latitude", $(this).attr("space-latitude"));
+        localStorage.setItem("space-longitude", $(this).attr("space-longitude"));
+        localStorage.setItem("space-description", $(this).attr("space-description"));
+        
+        window.location = "/spare_park/owner/space/add_space.php";
     });
     $(".icon-close-space").click(function() {
         $("#popup-add-space").hide();
     });
     $("#popup-btn-add-space").click(function() {
 
-        const spaceId = $(this).attr('id');
+        const spaceId = $(this).attr("id");
         console.log("Call Add space API! id:" +spaceId);
         console.log("Call Add space API! btn text:" + $(this).text());
 
@@ -133,17 +129,17 @@ $(document).ready(function() {
     });
 
     $('#my-spaces').on('click', '.space-item', function() {
-        const spaceId = $(this).attr('id');
-        const itemPos = $(this).attr('position');
-        const spaceName = $(this).attr('space-name');
-        const spaceStatus = $(this).attr('space-status');
-        const spaceType = $(this).attr('space-type');
-        const spaceHourRate = $(this).attr('space-hour-rate');
-        const spacePostcode = $(this).attr('space-postcode');
-        const spaceAddress = $(this).attr('space-address');
-        const spaceLatitude = $(this).attr('space-latitude');
-        const spaceLongitude = $(this).attr('space-longitude');
-        const spaceDescription = $(this).attr('space-description');
+        const spaceId = $(this).attr("id");
+        const itemPos = $(this).attr("position");
+        const spaceName = $(this).attr("space-name");
+        const spaceStatus = $(this).attr("space-status");
+        const spaceType = $(this).attr("space-type");
+        const spaceHourRate = $(this).attr("space-hour-rate");
+        const spacePostcode = $(this).attr("space-postcode");
+        const spaceAddress = $(this).attr("space-address");
+        const spaceLatitude = $(this).attr("space-latitude");
+        const spaceLongitude = $(this).attr("space-longitude");
+        const spaceDescription = $(this).attr("space-description");
 
         //var spaceLatitude = -33.712206;
         //var spaceLongitude = 150.311941;
@@ -169,8 +165,8 @@ $(document).ready(function() {
     });
 
     $('#my-spaces').on('click', '.btn-remove-space', function() {
-        var spaceId = $(this).attr('id');
-        var itemPos = $(this).attr('position');
+        var spaceId = $(this).attr("id");
+        var itemPos = $(this).attr("position");
         console.log("btn-remove-space with position:"+ itemPos + ", id:" + spaceId +" clicked!");
 
         var spaceElement = $(this).parent();

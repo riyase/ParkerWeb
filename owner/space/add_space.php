@@ -41,7 +41,6 @@
                         <input id="popup-space-name" type="text" placeholder="Space name" required>
                     </div>
                     <div class="input-box">
-                        
                         <select name="popup-space-type" id="popup-space-type" place>
                             <option value="" disabled selected>Select Space type</option>
                             <option value="car">Car</option>

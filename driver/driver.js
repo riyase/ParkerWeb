@@ -112,7 +112,7 @@ $(document).ready(function() {
         const spaceId = $(this).attr("id");
         const timeFrom = $("#input-driver-time-from").val();
         const timeTo = $("#input-driver-time-to").val();
-        const itemPos = $(this).attr('position');
+        const itemPos = $(this).attr("position");
         console.log("btn-space-item with position:"+ itemPos + ", id:" + spaceId +" clicked!");
 
         
@@ -139,7 +139,7 @@ $(document).ready(function() {
 
     $('#list-search-result').on('click', '.space-item', function() {
         const spaceId = $(this).attr("id");
-        const itemPos = $(this).attr('position');
+        const itemPos = $(this).attr("position");
         console.log("btn-space-item with position:"+ itemPos + ", id:" + spaceId +" clicked!");
         localStorage.setItem("spaceId", spaceId);
         localStorage.setItem("bookingStartTime", $("#input-driver-time-from").val());
