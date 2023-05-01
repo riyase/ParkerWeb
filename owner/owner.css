@@ -186,6 +186,27 @@
 /*    cursor: pointer;*/
 /*}*/
 
+.booking-item {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.booking-name-time {
+    flex: 1;
+    margin: 0;
+    
+}
+.booking-driver-name {
+    font-size: larger;
+}
+.booking-time {
+    color: gray;
+}
+.booking-status-action {
+    display: flex;
+    align-items: center;
+}
 #popup-add-space {
     position: absolute;
     display: none;

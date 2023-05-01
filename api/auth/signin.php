@@ -16,20 +16,25 @@ $sql = "SELECT * FROM user WHERE email = '$email' and password = '$password'";
 
 $result = mysqli_query($connection, $sql);
 $count = mysqli_num_rows($result);
-$logged_in = false;
+$status = false;
 $username = '';
+$message = 'User name or password does not match!';
 if ($count == 1) {
     $rows = mysqli_fetch_array($result, MYSQLI_ASSOC);
     $username = $rows['name'];
     session_start();
-    $logged_in = true;
-    $_SESSION["logged_in"] = $logged_in;
+    $_SESSION["logged_in"] = true;
     $_SESSION["user_id"] = $rows['id'];
     $_SESSION["username"] = $username;
-}
+    $status = true;
+    $message = "Logged in!";
+} 
 
 mysqli_close($connection);
-$response = array("logged_in" => $logged_in, "user_name" => $username);
+$response = array(
+    "status" => $status, 
+    "message" => $message,
+    "user_name" => $username);
 header("Content-Type: application/json");
 echo json_encode($response);
 ?>

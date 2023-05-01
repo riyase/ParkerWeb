@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/spare_park/common/css/common.css">
     <!-- <link rel="stylesheet" href="/spare_park/home.css"> -->
     <link rel="stylesheet" href="space_booking.css">
+    <link rel="stylesheet" href="/spare_park/common/css/star_rating.css">
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="space_booking.js"></script>
@@ -20,7 +21,7 @@
         <h2 class="logo">Spare Park</h2>
         <nav class="navbar">
             <a class="btn-driver active" href="#">Driver</a>
-            <a class="btn-bookings" href="#">My Bookings</a>
+            <a class="btn-bookings" href="#">Bookings</a>
             <a class="btn-owner" href="#">Owner</a>
             <button class="btn-login">Login</button>
             <a href="#" class="btn-logout">Logout</a>
@@ -37,6 +38,13 @@
                 </div>
             </div>
             <div id="space-detail">
+                <div class="rate">
+                        <label for="star5" title="text" disabled>5 stars</label>
+                        <label for="star4" title="text" disabled>4 stars</label>
+                        <label for="star3" title="text" disabled>3 stars</label>
+                        <label for="star2" title="text" disabled>2 stars</label>
+                        <label for="star1" title="text" disabled>1 star</label>
+                </div>
                 <h4 id="space-name">Space name</h4>
                 <h4 id="space-address">Space address</h4>
                 <h4 id="space-postcode">Space postcode</h4>

@@ -8,6 +8,7 @@ bg: https://unsplash.com/photos/Nyvq2juw4_o
 * {
     /* margin: 1px 4px;
     padding: 2px; */
+    /* width: 100%; */
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }

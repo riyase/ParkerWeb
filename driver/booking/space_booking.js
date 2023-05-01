@@ -1,6 +1,6 @@
+var isLoggedIn = false;
+
 $(document).ready(function() {
-
-
 
     //Implement book space by passing space id to space details screen
     const spaceId = localStorage.getItem("spaceId");
@@ -10,6 +10,12 @@ $(document).ready(function() {
     $("#input-driver-time-to").val(bookingEndTime);
     console.log("space details js. spaceId:" + spaceId + ", start:" + bookingStartTime + ", end:" + bookingEndTime);
     
+    $("#star1").attr("disabled", true);
+    $("#star2").attr("disabled", true);
+    $("#star3").attr("disabled", true);
+    $("#star4").attr("disabled", true);
+    $("#star5").attr("disabled", true);
+    
     $(".btn-driver").hide();
     $(".btn-bookings").hide();
     $(".btn-owner").hide();
@@ -18,16 +24,16 @@ $(document).ready(function() {
 
     
     
-    $.ajax({ url: "/spare_park/auth/login_status.php",
+    $.ajax({ url: "/spare_park/api/auth/login_status.php",
         context: document.body,
         success: function(response) {
-            if (response.logged_in) {
+            if (response.status) {
                 $(".btn-driver").show();
                 $(".btn-bookings").show();
                 $(".btn-owner").show();
                 $(".btn-logout").show();
+                isLoggedIn = true;
             } else {
-                console.log("show logIn!");
                 $(".btn-login").show();
             }
         }
@@ -90,21 +96,28 @@ $(document).ready(function() {
         window.location = "/spare_park/owner/owner.php";
     });
     $("#btn-book-space").click(function() {
+
+        if (!isLoggedIn) {
+            console.log("user not logged in!");
+            alert("Please login to book a space!");
+            return;
+        }
         const timeFrom = $("#input-driver-time-from").val();
         const timeTo = $("#input-driver-time-to").val();
         
         console.log("Call booking api id:"+ spaceId + ", timeFrom:" + timeFrom + ", timeTo:" + timeTo);
         
         //book_space_action method is not getting triggered!
-        $.ajax({ url: "/spare_park/driver/book_space_action.php",
+        $.ajax({ url: "/spare_park/api/booking/book_space.php",
             type: 'POST',
             data: jQuery.param({spaceId: spaceId, timeFrom: timeFrom, timeTo: timeTo}),
             context: document.body,
             success: function(response) {
                 console.log("space booking status:" + response.status);
-                if (response.status === "success") {
+                if (response.status) {
                     console.log("Space booked!");
                     window.location = "/spare_park/home.php";
+                    alert("Space booked!")
                     //spaceElement.remove();
                     //$("#popup-add-space").hide();
                 } else {

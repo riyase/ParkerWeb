@@ -21,13 +21,13 @@ $(document).ready(function() {
             timeTo: timeTo
         };
 
-        $.ajax({ url: "/spare_park/driver/search_space_action.php",
+        $.ajax({ url: "/spare_park/api/space/search_space.php",
             type: 'GET',
             data: jQuery.param(params),
             context: document.body,
-            success: function(response) {//spaceArray
+            success: function(response) {
                 $(".space-item").empty();
-                if (response.status === "not_available") {
+                if (response.len === 0) {
                     alert("No space available for the time selected!");
                     return;
                 }
@@ -71,11 +71,11 @@ $(document).ready(function() {
                         .append(spaceAddress);
 
                     var spaceId = '' + space.id;
-                    var spaceDeleteIcon = $("<ion-icon>")
-                        .attr("class", "ion-icon btn-space-item")
+                    var spaceRate = $("<h5>")
+                        .attr("class", "space-rate")
                         .attr("id", spaceId)
                         .attr("position", i)
-                        .attr("name", "trash-outline");
+                        .append("£" + space.hour_rate + "/HR");
                     
                     /*var spaceDeleteSpan = $("<span>")
                         .attr("class", "icon btn-remove-space")
@@ -96,7 +96,7 @@ $(document).ready(function() {
                         .attr("space-description", space.description)
                         .append(spaceType)
                         .append(spaceNameAddress)
-                        .append(spaceDeleteIcon);
+                        .append(spaceRate);
                         
                     $("#list-search-result").append(item);
                 }
@@ -108,34 +108,6 @@ $(document).ready(function() {
         });
     });
 
-    $('#list-search-result').on('click', '.btn-space-item', function() {
-        const spaceId = $(this).attr("id");
-        const timeFrom = $("#input-driver-time-from").val();
-        const timeTo = $("#input-driver-time-to").val();
-        const itemPos = $(this).attr("position");
-        console.log("btn-space-item with position:"+ itemPos + ", id:" + spaceId +" clicked!");
-
-        
-        //book_space_action method is not getting triggered!
-        $.ajax({ url: "/spare_park/driver/book_space_action.php",
-            type: 'POST',
-            data: jQuery.param({spaceId: spaceId, timeFrom: timeFrom, timeTo: timeTo}),
-            context: document.body,
-            success: function(response) {
-                console.log("space booking status:" + response.status);
-                if (response.status === "success") {
-                    console.log("Space booked!");
-                    //spaceElement.remove();
-                    //$("#popup-add-space").hide();
-                } else {
-                    console.log("Booking space failed!: status:" + response.status);
-                }
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                console.log("Booking space error!, xhr.status:" . xhr.status);
-            }
-        });
-    });
 
     $('#list-search-result').on('click', '.space-item', function() {
         const spaceId = $(this).attr("id");

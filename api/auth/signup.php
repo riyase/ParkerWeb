@@ -23,13 +23,15 @@ $sql = "INSERT INTO user(name, email, phone, password, country_id, is_admin)
 
 //echo $sql;
 
+$status = true;
+$message = "success";
 if (!mysqli_query($connection, $sql)) {
-    echo("{status: 'sss'}");
-    die ('query error'.mysqli_error($connection));
+    $status = false;
+    $message = "Error signin up!";
 }
 mysqli_close($connection);
 
-$response = array("logged_in" => true, "user_name" => $username);
+$response = array("status" => $status, "message" => $message);
 header("Content-Type: application/json");
 echo json_encode($response);
 

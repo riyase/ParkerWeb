@@ -1,7 +1,9 @@
 <?php
 
 //include('/spare_park/common/db/db_conn.php');
-
+ini_set("log_errors", 1);
+ini_set("error_log", "/tmp/php-error.log");
+error_log( "Hello, errors!" );
 $server = "localhost:3306";
 $username = "root";
 $password = "";
@@ -55,6 +57,8 @@ query       already covered in case 1 & 2.
 
 */
 
+
+
 $sqlTimeCheck = "SELECT * FROM `booking` 
     WHERE space_id = '$spaceId' 
     AND (
@@ -83,8 +87,10 @@ $sql = "INSERT INTO booking(driver_id, space_id, time_from, time_to, status)
 $cursor = mysqli_query($connection, $sql);
 //$count = mysqli_num_rows($cursor);
 
+
+
 mysqli_close($connection);
-$response = array("status" => "success");
+$response = array("status" => true);
 header("Content-Type: application/json");
 echo json_encode($response);
 ?>

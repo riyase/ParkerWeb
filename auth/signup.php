@@ -30,7 +30,7 @@
 </head>
 <body>
     <section class="signin-container">
-        <form class="signin-form" name="signup" method="post" action="signup_action.php"> 
+        <form class="signin-form" name="signup" method="post" action="/spare_park/api/auth/signup.php"> 
             <input type="text" id="name" name="name" placeholder="John Smith" ><br><br>
             <input type="email" id="email" name="email" placeholder="john@gmail.com"><br><br>
             <input type="password" id="password" name="password" placeholder="********"><br><br>

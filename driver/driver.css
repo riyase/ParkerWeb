@@ -111,6 +111,9 @@
 #space-detail-name {
     flex: 1;
 }
+.space-rate {
+    padding-right: 5px;
+}
 #btn-update-space {
 
 }

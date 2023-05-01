@@ -19,7 +19,7 @@
 </head>
 <body>
     <section class="signin-container">
-        <form class="signin-form" method="post" action="signin_action.php"> 
+        <form class="signin-form" method="post" action="/spare_park/api/auth/signin.php"> 
             <input type="email" id="email" name="email" placeholder="john@gmail.com"><br><br>
             <input type="password" id="password" name="password" placeholder="********"><br><br>
             <input type="submit" text="Sign Up">

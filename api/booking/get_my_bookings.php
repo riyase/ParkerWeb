@@ -11,8 +11,8 @@ $db = "spare_park";
 $connection = mysqli_connect($server, $username, $password, $db) or die ("Not connected!");
 
 session_start();
-//$user_id = $_SESSION["user_id"];
-$user_id = 13;
+$user_id = $_SESSION["user_id"];
+//$user_id = 13;
 
 $sql = "SELECT 
 booking.id, booking.driver_id, booking.space_id, booking.time_from, booking.time_to,
@@ -23,7 +23,7 @@ space.type, space.address, space.latitude, space.longitude, space.post_code, spa
 $cursor = mysqli_query($connection, $sql);
 $count = mysqli_num_rows($cursor);
 
-$my_booking = array();
+$spaces = array();
 while ($row = mysqli_fetch_array($cursor, MYSQLI_ASSOC)) {
     $spaces[] = array(
         'id' => $row["id"], 

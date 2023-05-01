@@ -13,7 +13,7 @@ $(document).ready(function() {
     });
 
     //Populate spaces
-    $.ajax({ url: "/spare_park/owner/get_my_spaces.php",
+    $.ajax({ url: "/spare_park/api/space/get_my_spaces.php",
             type: 'GET',
             context: document.body,
             success: function(spaceArray) {//spaceArray
@@ -187,6 +187,7 @@ $(document).ready(function() {
         $("#space-postcode").text(spacePostcode);
         $("#space-description").text(spaceDescription);
         showMap(spaceLatitude, spaceLongitude);
+        getSpaceBookings(spaceId);
     });
 
     $('#my-spaces').on('click', '.btn-remove-space', function() {
@@ -195,24 +196,62 @@ $(document).ready(function() {
         console.log("btn-remove-space with position:"+ itemPos + ", id:" + spaceId +" clicked!");
 
         var spaceElement = $(this).parent();
-        $.ajax({ url: "/spare_park/owner/remove_space_action.php",
+        $.ajax({ url: "/spare_park/api/space/remove_space.php",
             type: 'POST',
             data: jQuery.param({id: spaceId}),
             context: document.body,
             success: function(response) {
                 console.log("space added status:" + response.status);
-                if (response.status === "success") {
+                if (response.status) {
                     console.log("Space deleted!");
                     spaceElement.remove();
                     //$("#popup-add-space").hide();
                 } else {
-                    console.log("Removing space failed!");
+                    console.log(response.message);
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("Remove space error!, xhr.status:" . xhr.status);
             }
         });
+    });
+
+    $('#space-bookings').on('click', '.btn-status-action', function() {
+        const bookingId = $(this).attr("id");
+        const bookingStatus = $(this).attr("status");
+        const action = $(this).attr("action");
+        console.log("btn-remove-booking with id:"+ bookingId + ", status:" + bookingStatus +" clicked!");
+  
+        var newStatus;
+        if (bookingStatus === 'requested') {
+            if (action === "accept") {
+                newStatus = "accepted";
+            } else if (action === "reject") {
+                newStatus = "rejected";
+            }
+        } else if (bookingStatus === 'accepted') {
+            newStatus = "completed";
+        }
+        if (newStatus !== undefined) {
+            $.ajax({ url: "/spare_park/api/booking/update_booking_status.php",
+                type: 'POST',
+                data: jQuery.param({id: bookingId, status: newStatus}),
+                context: document.body,
+                success: function(response) {
+                    
+                    if (response.status) {
+                        console.log("Booking status changed to:" + newStatus);
+                    } else {
+                        console.log(response.message);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Remove space error!, xhr.status:" . xhr.status);
+                }
+            });
+        } else {
+            console.log("ignore click!");
+        }
     });
     
 });
@@ -240,18 +279,18 @@ function addSpace(id) {
                 data['id'] = id;
                 console.log("Updating space! name:" + ($(".space-name").val()));
             }
-            $.ajax({ url: "/spare_park/owner/add_space_action.php",
+            $.ajax({ url: "/spare_park/api/add_space.php",
                 type: 'POST',
                 data: jQuery.param(data),
                 context: document.body,
                 success: function(response) {
                     console.log("Space added status:" + response.status);
-                    if (response.status === "success") {
+                    if (response.status) {
                         console.log("New space added!, id:" + response.id);
                         console.log("New space added!, log:" + response.log);
                         $("#popup-add-space").hide();
                     } else {
-                        console.log("Adding space failed!");
+                        console.log(response.message);
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -291,5 +330,125 @@ function showMap(lat, lng) {
         });
         
         map.setCenter(marker.getPosition());    
+}
 
+function getSpaceBookings(spaceId) {
+
+    //DISPLAY SPACE BOOKINGS PROPERLY
+    $(".booking-item").empty();
+    console.log("getSpaceBookings() spaceId:" + spaceId);
+    $.ajax({ url: "/spare_park/api/booking/get_space_bookings.php",
+            type: 'GET',
+            data: jQuery.param({ id: spaceId }),
+            context: document.body,
+            success: function(bookings) {
+                //$(".booking-item").empty();
+                for (let i=0; i<bookings.length; i++) {
+                    const booking = bookings[i];
+
+                    const bookingNameTime = $("<div>")
+                        .attr("class", "booking-name-time")
+
+                    const bookingUserName = $("<p>")
+                        .attr("class", "booking-driver-name")
+                        .append(booking.username + " - " + booking.id)
+                    const bookingTime = $("<p>")
+                        .attr("class", "booking-time")    
+                        .append(booking.time_from)
+                        .append("<br>")
+                        .append(booking.time_to);
+
+                    bookingNameTime.append(bookingUserName)
+                        .append(bookingTime);
+
+                    var bookingId = '' + booking.id;
+                    
+                    var item = $("<div>")
+                        .attr("class", "booking-item")
+                        .attr("id", bookingId)
+                        .attr("position", i)
+                        .attr("space-name", booking.name)
+                        .attr("space-status", booking.status)
+                        .attr("space-type", booking.type)
+                        .attr("space-hour-rate", booking.hour_rate)
+                        .attr("space-postcode", booking.post_code)
+                        .attr("space-address", booking.address)
+                        .attr("space-latitude", booking.latitude)
+                        .attr("space-longitude", booking.longitude)
+                        .attr("space-description", booking.description)
+                        .append(bookingNameTime);
+
+                    var bookingStatusAction = $("<div>")
+                        .attr("class", "booking-status-action");
+                    var bookingStatusIcon = $("<ion-icon>")
+                        .attr("class", "ion-icon btn-status-action")
+                        .attr("id", bookingId)
+                        .attr("status", booking.status)
+                        .attr("position", i);
+                    var bookingStatusIconAccept;
+                    if (booking.status === "requested") {
+                        bookingStatusIcon.attr("action", "reject")
+                        bookingStatusIconAccept = $("<ion-icon>")
+                            .attr("class", "ion-icon btn-status-action")
+                            .attr("id", bookingId)
+                            .attr("status", booking.status)
+                            .attr("action", "accept")
+                            .attr("position", i);
+                    }
+                    
+                    var statusColor = "blue";
+                    switch (booking.status) {
+                        case "accepted":
+                            statusColor = "green";
+                            bookingStatusIcon.attr("name", "checkmark-done-outline");
+                            //bookingStatusIconAccept.attr("name", "");
+                            break;
+                        case "rejected":
+                            statusColor = "red";
+                            //bookingStatusIcon.attr("name", "");
+                            //bookingStatusIconAccept.attr("name", "");
+                            break;
+                        case "cancelled":
+                            statusColor = "grey";
+                            //bookingStatusIcon.attr("name", "");
+                            //bookingStatusIconAccept.attr("name", "");
+                            break;
+                        case "completed":
+                            statusColor = "black";
+                            //bookingStatusIcon.attr("name", "");
+                            //bookingStatusIconAccept.attr("name", "");
+                            break;
+                        default://Requested
+                            statusColor = "blue";
+                            bookingStatusIcon.attr("name", "close-circle-outline");
+                            bookingStatusIconAccept.attr("name", "checkmark-circle-outline");
+                    }    
+                    var bookingStatus = $("<p>")
+                        .attr("class", "booking-status")
+                        .attr("style", "color:" + statusColor)
+                        .append(booking.status);
+                    bookingStatusAction.append(bookingStatus);
+
+                    if (booking.status === 'requested') {
+                        bookingStatusIcon.attr("cursor", "pointer");
+                    } else {
+                        bookingStatusIcon.attr("cursor", "none");
+                    }
+                    bookingStatusAction.append(bookingStatusIcon);
+                    if (bookingStatusIconAccept !== undefined) {
+                        bookingStatusAction.append(bookingStatusIconAccept);
+                    }
+                    
+                    item.append(bookingStatusAction);
+                        
+                    //var item = $("<p>").append(spaceArray[i].name);
+                    $("#space-bookings").append(item);
+                }
+                console.log("get bookings response. size:" + bookings.length);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("Get bookings error!, xhr.status:" . xhr.status);
+            }
+        }
+    );
 }

@@ -2,6 +2,8 @@ $(document).ready(function() {
 
     console.log("my_bookings js executed!");
 
+    $("#rating-popup").hide();
+
     $(".logo").click(function() {
         window.location = "/spare_park/home.php";
     });
@@ -15,7 +17,7 @@ $(document).ready(function() {
         window.location = "/spare_park/bookings/my_bookings.php";
     });
 
-    $.ajax({ url: "/spare_park/api/get_my_bookings.php",
+    $.ajax({ url: "/spare_park/api/booking/get_my_bookings.php",
             type: 'GET',
             context: document.body,
             success: function(bookings) {
@@ -45,10 +47,12 @@ $(document).ready(function() {
                     const spaceName = $("<p>")
                         .attr("class", "space-name")
                         .append(booking.name);
-                    const bookingTimeText = booking.timeFrom + " - " + booking.timeTo;
+                    //const bookingTimeText = booking.timeFrom + " - " + booking.timeTo;
                     const bookingTime = $("<p>")
                         .attr("class", "space-time")
-                        .append(bookingTimeText);
+                        .append(booking.timeFrom)
+                        .append("<br>")
+                        .append(booking.timeTo);
                     const spaceNameTime = $("<div>")
                         .attr("class", "space-name-time")
                         .append(spaceName)
@@ -95,7 +99,7 @@ $(document).ready(function() {
                             break;
                         case "completed":
                             statusColor = "black";
-                            //bookingStatusIcon.attr("name", "checkmark-circle-outline");
+                            bookingStatusIcon.attr("name", "chatbox-ellipses-outline");
                             break;
                         default:
                             statusColor = "blue";
@@ -134,26 +138,68 @@ $(document).ready(function() {
 
         if (bookingStatus === 'requested') {
             var spaceElement = $(this).parent().parent();
-            $.ajax({ url: "/spare_park/api/cancel_booking.php",
+            $.ajax({ url: "/spare_park/api/booking/update_booking_status.php",
                 type: 'POST',
-                data: jQuery.param({id: bookingId}),
+                data: jQuery.param({id: bookingId, status: "cancelled"}),
                 context: document.body,
                 success: function(response) {
                     console.log("space added status:" + response.status);
-                    if (response.status === "success") {
+                    if (response.status) {
                         console.log("Space deleted!");
-                        spaceElement.remove();
+                        //spaceElement.remove();
                     } else {
-                        console.log("Removing space failed!");
+                        console.log(response.message);
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     console.log("Remove space error!, xhr.status:" . xhr.status);
                 }
             });
+        } else if (bookingStatus === 'completed') {
+            $(".btn-rating-submit").attr("id", bookingId);
+            $("#rating-popup").show();
         } else {
             console.log("ignore click!");
         }
+    });
+
+    $(".icon-close-rating").click(function() {
+        $(".space-review").val("");
+        $("#rating-popup").hide();
+    });
+    $(".btn-rating-submit").click(function() {
+        let rating = 1;
+        if($("#star5").is(":checked")) {
+            rating = 5;
+        } else if($("#star4").is(":checked")) {
+            rating = 4;
+        } else if($("#star3").is(":checked")) {
+            rating = 3;
+        } else if($("#star2").is(":checked")) {
+            rating = 2;
+        }
+        let params = {
+            id: $(this).attr("id"),
+            rating: rating,
+            review: $(".space-review").val(),
+        };
+        $.ajax({ url: "/spare_park/api/booking/set_booking_review.php",
+                type: 'POST',
+                data: jQuery.param(params),
+                context: document.body,
+                success: function(response) {
+                    if (response.status) {
+                        console.log("Booking review has been set!");
+                    } else {
+                        console.log(response.message);
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log("Remove space error!, xhr.status:" . xhr.status);
+                }
+            });
+        $(".space-review").val("");
+        $("#rating-popup").hide();
     });
     
 });

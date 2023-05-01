@@ -4,10 +4,11 @@
 
 //if user is not logged in redirect him to the login page
 /*if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] == false) {
-    header("location: /spare_park/auth/signout_action.php");
+    header("location: /spare_park/api/auth/signout.php");
     exit;
 }*/
 header("location: /spare_park/home.php");
+//echo phpinfo();
 ?>
 
 <!-- <!DOCTYPE html>

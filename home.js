@@ -14,21 +14,20 @@ $(document).ready(function() {
         console.log("We are in home!");
     }
 
-    $.ajax({ url: "/spare_park/auth/login_status.php",
+    $.ajax({ url: "/spare_park/api/auth/login_status.php",
         context: document.body,
         success: function(response) {
             //Response is already parsed to json because 'application/json' is set on php side!
             //var parsedRespose = jQuery.parseJSON(response);
-            if (response.logged_in) {
+            if (response.status) {
                 $(".btn-driver").show();
                 $(".btn-owner").show();
                 $(".btn-bookings").show();
                 $(".btn-logout").show();
             } else {
-                console.log("show logIn!");
                 $(".btn-login").show();
             }
-            console.log("loggedIn:" + response.logged_in);
+            console.log("loggedIn:" + response.status);
         }
     });
     
@@ -47,11 +46,11 @@ $(document).ready(function() {
     });
     $(".btn-logout").click(function() {
         console.log("logging out");
-        $.ajax({ url: "/spare_park/auth/signout_action.php",
+        $.ajax({ url: "/spare_park/api/auth/signout.php",
             context: document.body,
             success: function(response) {
                 console.log("logging out success!");
-                if (response.logged_out) {
+                if (response.status) {
                     $(".btn-owner").hide();
                     $(".btn-driver").hide();
                     $(".btn-logout").hide();
@@ -80,15 +79,13 @@ $(document).ready(function() {
         var emailVal = $(".login-email").val();
         var passwordVal = $(".login-password").val();
 
-        $.ajax({ url: "/spare_park/auth/signin_action.php",
+        $.ajax({ url: "/spare_park/api/auth/signin.php",
             type: 'POST',
             data: jQuery.param({ email: emailVal, password: passwordVal }),
             context: document.body,
             success: function(response) {
-                console.log("loggedIn:" + response.logged_in);
-                console.log("loggedIn data:" + response.data);
-                if (response.logged_in) {
-                    console.log("login success");
+                console.log("status:" + response.status);
+                if (response.status) {
                     $(".login-popup").hide();
                     $(".btn-login").hide();
                     $(".btn-owner").show();
@@ -96,8 +93,8 @@ $(document).ready(function() {
                     $(".btn-logout").show();
                     window.location ="/spare_park/home.php";
                 } else {
-                    console.log("login failed!");
-                    alert("Invalid User name or Password!");
+                    console.log(response.message);
+                    alert(response.message);
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -121,13 +118,13 @@ $(document).ready(function() {
         var phoneVal = $(".register-phone").val();
         var passwordVal = $(".register-password").val();
 
-        $.ajax({ url: "/spare_park/auth/signup_action.php",
+        $.ajax({ url: "/spare_park/api/auth/signup.php",
             type: 'POST',
             data: jQuery.param({ name: nameVal, email: emailVal, phone: phoneVal, password: passwordVal }),
             context: document.body,
             success: function(response) {
-                console.log("register:" + response.logged_in);
-                if (response.logged_in) {
+                console.log("register:" + response.status);
+                if (response.status) {
                     console.log("register success");
                     $(".register-popup").hide();
                     $(".login-popup").hide();
@@ -136,8 +133,8 @@ $(document).ready(function() {
                     $(".btn-driver").show();
                     $(".btn-logout").show();
                 } else {
-                    console.log("register failed!");
-                    alert("register failed!");
+                    console.log(response.message);
+                    alert(response.message);
                 }
             },
             error: function (xhr, ajaxOptions, thrownError) {

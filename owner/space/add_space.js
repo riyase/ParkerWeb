@@ -77,13 +77,13 @@ function addSpace(id) {
                 data['id'] = id;
                 console.log("Updating space! name:" + ($(".space-name").val()));
             }
-            $.ajax({ url: "/spare_park/owner/add_space_action.php",
+            $.ajax({ url: "/spare_park/api/space/add_space.php",
                 type: 'POST',
                 data: jQuery.param(data),
                 context: document.body,
                 success: function(response) {
                     console.log("Space added status:" + response.status);
-                    if (response.status === "success") {
+                    if (response.status) {
                         console.log("New space added!, id:" + response.id);
                         console.log("New space added!, log:" + response.log);
                         $("#popup-add-space").hide();
