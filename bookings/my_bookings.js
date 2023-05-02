@@ -81,6 +81,7 @@ $(document).ready(function() {
                     var bookingStatusIcon = $("<ion-icon>")
                         .attr("class", "ion-icon btn-status-action")
                         .attr("id", bookingId)
+                        .attr("spaceId", booking.spaceId)
                         .attr("status", booking.status)
                         .attr("position", i);
                     var statusColor = "blue";
@@ -132,8 +133,10 @@ $(document).ready(function() {
     );
 
     $('#my-bookings').on('click', '.btn-status-action', function() {
-        var bookingId = $(this).attr("id");
-        var bookingStatus = $(this).attr("status");
+        const bookingId = $(this).attr("id");
+        const spaceId = $(this).attr("spaceId");
+        const bookingStatus = $(this).attr("status");
+
         console.log("btn-remove-booking with id:"+ bookingId + ", status:" + bookingStatus +" clicked!");
 
         if (bookingStatus === 'requested') {
@@ -157,6 +160,7 @@ $(document).ready(function() {
             });
         } else if (bookingStatus === 'completed') {
             $(".btn-rating-submit").attr("id", bookingId);
+            $(".btn-rating-submit").attr("spaceId", spaceId);
             $("#rating-popup").show();
         } else {
             console.log("ignore click!");
@@ -180,6 +184,7 @@ $(document).ready(function() {
         }
         let params = {
             id: $(this).attr("id"),
+            spaceId: $(this).attr("spaceId"),
             rating: rating,
             review: $(".space-review").val(),
         };

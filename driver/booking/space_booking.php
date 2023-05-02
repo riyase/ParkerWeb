@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/spare_park/common/css/common.css">
     <!-- <link rel="stylesheet" href="/spare_park/home.css"> -->
     <link rel="stylesheet" href="space_booking.css">
-    <link rel="stylesheet" href="/spare_park/common/css/star_rating.css">
+    <link rel="stylesheet" href="/spare_park/common/css/star_rating_disabled.css">
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="space_booking.js"></script>
@@ -39,11 +39,11 @@
             </div>
             <div id="space-detail">
                 <div class="rate">
-                        <label for="star5" title="text" disabled>5 stars</label>
-                        <label for="star4" title="text" disabled>4 stars</label>
-                        <label for="star3" title="text" disabled>3 stars</label>
-                        <label for="star2" title="text" disabled>2 stars</label>
-                        <label for="star1" title="text" disabled>1 star</label>
+                        <input type="radio" id="star5" name="rate" value="5" disabled/><label for="star5" title="text" disabled>5 stars</label>
+                        <input type="radio" id="star4" name="rate" value="4" disabled/><label for="star4" title="text" disabled>4 stars</label>
+                        <input type="radio" id="star3" name="rate" value="3" disabled/><label for="star3" title="text" disabled>3 stars</label>
+                        <input type="radio" id="star2" name="rate" value="2" disabled/><label for="star2" title="text" disabled>2 stars</label>
+                        <input type="radio" id="star1" name="rate" value="1" disabled/><label for="star1" title="text" disabled>1 star</label>
                 </div>
                 <h4 id="space-name">Space name</h4>
                 <h4 id="space-address">Space address</h4>

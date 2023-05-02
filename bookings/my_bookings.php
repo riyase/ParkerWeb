@@ -11,7 +11,7 @@
     <!-- <link rel="stylesheet" href="/spare_park/owner/owner.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <link rel="stylesheet" href="my_bookings.css">
-    <!-- <link rel="stylesheet" href="/spare_park/common/css/star_rating.css"> -->
+    <link rel="stylesheet" href="/spare_park/common/css/star_rating.css">
     <script src="my_bookings.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGsGonLWTkKhOE9xCVlM-N0EFaLHk4DvI&callback=fetchMap"></script> -->

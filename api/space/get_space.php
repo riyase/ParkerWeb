@@ -28,7 +28,8 @@ if ($count == 1) {
         'latitude' => $row["latitude"],
         'longitude' => $row["longitude"],
         'post_code' => $row["post_code"],
-        'description' => $row["description"]);
+        'description' => $row["description"],
+        'rating' => $row["rating"]);
 }
 mysqli_close($connection);
 //GET SPACE and return it to show space details

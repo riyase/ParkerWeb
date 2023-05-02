@@ -9,13 +9,7 @@ $(document).ready(function() {
     $("#input-driver-time-from").val(bookingStartTime);
     $("#input-driver-time-to").val(bookingEndTime);
     console.log("space details js. spaceId:" + spaceId + ", start:" + bookingStartTime + ", end:" + bookingEndTime);
-    
-    $("#star1").attr("disabled", true);
-    $("#star2").attr("disabled", true);
-    $("#star3").attr("disabled", true);
-    $("#star4").attr("disabled", true);
-    $("#star5").attr("disabled", true);
-    
+
     $(".btn-driver").hide();
     $(".btn-bookings").hide();
     $(".btn-owner").hide();
@@ -71,6 +65,23 @@ $(document).ready(function() {
                 default:
                     typeSrc = "/spare_park/img/vehicle-car.png";
             }
+
+            //space.rating = 3;
+            const spaceRating = Math.floor(space.rating);
+            $("#star1").attr('checked', true);
+            if (spaceRating > 1) {
+                $("#star2").attr('checked', true);
+            }
+            if (spaceRating > 2) {
+                $("#star3").attr('checked', true);
+            }
+            if (spaceRating > 3) {
+                $("#star4").attr('checked', true);
+            }
+            if (spaceRating > 4) {
+                $("#star5").attr('checked', true);
+            }
+
             $("#space-type-name").text(space.type);
             $("#space-type-icon").attr("src", typeSrc);
 
