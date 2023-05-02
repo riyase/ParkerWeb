@@ -132,6 +132,24 @@ $(document).ready(function() {
         }
     );
 
+    $(".btn-logout").click(function() {
+        console.log("logging out");
+        $.ajax({ url: "/spare_park/api/auth/signout.php",
+            context: document.body,
+            success: function(response) {
+                console.log("logging out success!");
+                if (response.status) {
+                    window.location = "/spare_park/home.php"
+                } else {
+                    alert("Failed signing out!");
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log("logging out error!");
+            }
+        });
+    });
+
     $('#my-bookings').on('click', '.btn-status-action', function() {
         const bookingId = $(this).attr("id");
         const spaceId = $(this).attr("spaceId");

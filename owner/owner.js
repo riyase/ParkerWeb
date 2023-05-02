@@ -2,6 +2,9 @@ $(document).ready(function() {
 
     console.log("Owner js executed!");
 
+    $("#owner-detail").hide();
+    $("#owner-detail-empty").show();
+
     $(".logo").click(function() {
         window.location = "/spare_park/home.php";
     });
@@ -14,84 +17,102 @@ $(document).ready(function() {
 
     //Populate spaces
     $.ajax({ url: "/spare_park/api/space/get_my_spaces.php",
-            type: 'GET',
-            context: document.body,
-            success: function(spaceArray) {//spaceArray
-                for (let i=0; i<spaceArray.length; i++) {
-                    const space = spaceArray[i];
-                    let typeSrc = "/spare_park/img/vehicle-car.png";
-                    switch(space.type) {
-                        case "motor_cycle":
-                            typeSrc = "/spare_park/img/vehicle-motor-cycle.png";
-                            break;
-                        case "bus":
-                            typeSrc = "/spare_park/img/vehicle-bus.png";
-                            break;
-                        case "van":
-                            typeSrc = "/spare_park/img/vehicle-van.png";
-                            break;    
-                        case "truck":
-                            typeSrc = "/spare_park/img/vehicle-truck.png";
-                            break;        
-                        default:
-                            typeSrc = "/spare_park/img/vehicle-car.png";
-                    }
-                    const spaceType = $("<img>")
-                        .attr("class", "space-item-type")
-                        .attr("src", typeSrc);
-
-                    const spaceName = $("<p>")
-                        .attr("class", "space-name")
-                        .append(space.name);
-                    const spaceAddress = $("<p>")
-                        .attr("class", "space-address")
-                        .append(space.post_code);
-                    const spaceNameAddress = $("<div>")
-                        .attr("class", "space-name-address")
-                        .append(spaceName)
-                        .append(spaceAddress);
-
-                    var spaceId = '' + space.id;
-                    var spaceDeleteIcon = $("<ion-icon>")
-                        .attr("class", "ion-icon btn-remove-space")
-                        .attr("id", spaceId)
-                        .attr("position", i)
-                        .attr("name", "trash-outline");
-                    
-                    /*var spaceDeleteSpan = $("<span>")
-                        .attr("class", "icon btn-remove-space")
-                        .attr("id", spaceId)
-                        .append(spaceDeleteIcon);*/
-                    var item = $("<div>")
-                        .attr("class", "space-item")
-                        .attr("id", spaceId)
-                        .attr("position", i)
-                        .attr("space-name", space.name)
-                        .attr("space-status", space.status)
-                        .attr("space-type", space.type)
-                        .attr("space-hour-rate", space.hour_rate)
-                        .attr("space-postcode", space.post_code)
-                        .attr("space-address", space.address)
-                        .attr("space-latitude", space.latitude)
-                        .attr("space-longitude", space.longitude)
-                        .attr("space-description", space.description)
-                        .append(spaceType)
-                        .append(spaceNameAddress)
-                        .append(spaceDeleteIcon);
-                    var liItem = $("<li>")
-                        .attr("class", "li-space-item")
-                        .append(item);
-                        
-                    //var item = $("<p>").append(spaceArray[i].name);
-                    $("#my-spaces").append(liItem);
+        type: 'GET',
+        context: document.body,
+        success: function(spaceArray) {//spaceArray
+            for (let i=0; i<spaceArray.length; i++) {
+                const space = spaceArray[i];
+                let typeSrc = "/spare_park/img/vehicle-car.png";
+                switch(space.type) {
+                    case "motor_cycle":
+                        typeSrc = "/spare_park/img/vehicle-motor-cycle.png";
+                        break;
+                    case "bus":
+                        typeSrc = "/spare_park/img/vehicle-bus.png";
+                        break;
+                    case "van":
+                        typeSrc = "/spare_park/img/vehicle-van.png";
+                        break;    
+                    case "truck":
+                        typeSrc = "/spare_park/img/vehicle-truck.png";
+                        break;        
+                    default:
+                        typeSrc = "/spare_park/img/vehicle-car.png";
                 }
-                console.log("get spaces response:" + spaceArray);
+                const spaceType = $("<img>")
+                    .attr("class", "space-item-type")
+                    .attr("src", typeSrc);
+
+                const spaceName = $("<p>")
+                    .attr("class", "space-name")
+                    .append(space.name);
+                const spaceAddress = $("<p>")
+                    .attr("class", "space-address")
+                    .append(space.post_code);
+                const spaceNameAddress = $("<div>")
+                    .attr("class", "space-name-address")
+                    .append(spaceName)
+                    .append(spaceAddress);
+
+                var spaceId = '' + space.id;
+                var spaceDeleteIcon = $("<ion-icon>")
+                    .attr("class", "ion-icon btn-remove-space")
+                    .attr("id", spaceId)
+                    .attr("position", i)
+                    .attr("name", "trash-outline");
+                
+                /*var spaceDeleteSpan = $("<span>")
+                    .attr("class", "icon btn-remove-space")
+                    .attr("id", spaceId)
+                    .append(spaceDeleteIcon);*/
+                var item = $("<div>")
+                    .attr("class", "space-item")
+                    .attr("id", spaceId)
+                    .attr("position", i)
+                    .attr("space-name", space.name)
+                    .attr("space-status", space.status)
+                    .attr("space-type", space.type)
+                    .attr("space-hour-rate", space.hour_rate)
+                    .attr("space-postcode", space.post_code)
+                    .attr("space-address", space.address)
+                    .attr("space-latitude", space.latitude)
+                    .attr("space-longitude", space.longitude)
+                    .attr("space-description", space.description)
+                    .append(spaceType)
+                    .append(spaceNameAddress)
+                    .append(spaceDeleteIcon);
+                var liItem = $("<li>")
+                    .attr("class", "li-space-item")
+                    .append(item);
+                    
+                //var item = $("<p>").append(spaceArray[i].name);
+                $("#my-spaces").append(liItem);
+            }
+            console.log("get spaces response:" + spaceArray);
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log("Get spaces error!, xhr.status:" . xhr.status);
+        }
+    });
+
+    $(".btn-logout").click(function() {
+        console.log("logging out");
+        $.ajax({ url: "/spare_park/api/auth/signout.php",
+            context: document.body,
+            success: function(response) {
+                console.log("logging out success!");
+                if (response.status) {
+                    window.location = "/spare_park/home.php"
+                } else {
+                    alert("Failed signing out!");
+                }
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                console.log("Get spaces error!, xhr.status:" . xhr.status);
+                console.log("logging out error!");
             }
         });
-    
+    });
+
     $("#btn-new-space").click(function() {
         console.log("btn-add-space is clicked!");
         localStorage.removeItem("spaceId");
@@ -141,6 +162,8 @@ $(document).ready(function() {
         const spaceLongitude = $(this).attr("space-longitude");
         const spaceDescription = $(this).attr("space-description");
 
+        $("#owner-detail").show();
+        $("#owner-detail-empty").hide();
         //var spaceLatitude = -33.712206;
         //var spaceLongitude = 150.311941;
         console.log("space details with position:"+ itemPos + ", id:" + spaceId +" clicked!");

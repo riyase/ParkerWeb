@@ -9,10 +9,10 @@ $(document).ready(function() {
     $(".register-popup").hide();
 
     console.log("home window location:" + window.location.href);
-    if (window.location.href == "http://localhost/spare_park/home.php") {
+    //if (window.location.href == "http://localhost/spare_park/home.php") {
         $("#driver-layout").load("/spare_park/driver/driver.php"); 
         console.log("We are in home!");
-    }
+    //}
 
     $.ajax({ url: "/spare_park/api/auth/login_status.php",
         context: document.body,
@@ -51,8 +51,9 @@ $(document).ready(function() {
             success: function(response) {
                 console.log("logging out success!");
                 if (response.status) {
-                    $(".btn-owner").hide();
                     $(".btn-driver").hide();
+                    $(".btn-bookings").hide();
+                    $(".btn-owner").hide();
                     $(".btn-logout").hide();
                     $(".login-popup").hide();
                     $(".register-popup").hide();
@@ -89,9 +90,10 @@ $(document).ready(function() {
                     $(".login-popup").hide();
                     $(".btn-login").hide();
                     $(".btn-owner").show();
+                    $(".btn-bookings").show();
                     $(".btn-driver").show();
                     $(".btn-logout").show();
-                    window.location ="/spare_park/home.php";
+                    //window.location ="/spare_park/home.php";
                 } else {
                     console.log(response.message);
                     alert(response.message);

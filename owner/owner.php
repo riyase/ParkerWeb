@@ -64,6 +64,9 @@
                 <ul id="space-bookings">
                 </ul>
             </div>
+            <div id="owner-detail-empty">
+                <h4>No Space selected!</h4>
+            </div>
         </div>
         
     </div>

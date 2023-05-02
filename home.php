@@ -26,7 +26,6 @@
             <button class="btn-login">Login</button>
         </nav>
     </header>
-    <!-- <div id="google-map" style="width:300px; height:300px;"> -->
 
     </div>
     <div class="popup-group">
