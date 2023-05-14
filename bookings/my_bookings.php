@@ -22,8 +22,8 @@
         <h2 class="logo">Spare Park</h2>
         <nav class="navbar">
             <a class="btn-driver" href="#">Driver</a>
-            <a class="btn-bookings active" href="#">Bookings</a>
             <a class="btn-owner" href="#">Owner</a>
+            <a class="btn-bookings active" href="#">Bookings</a>
             <a href="#" class="btn-logout">Logout</a>
         </nav>
     </header>
@@ -50,7 +50,7 @@
                 </div>
                 <div class="input-box">
                     <!-- <input class="space-review" type="text" placeholder="Write your review about this space!" required> -->
-                    <textarea class="space-review" name="w3review" type="text" rows="3" cols="50" required>At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.</textarea>
+                    <textarea class="space-review" name="w3review" type="text" rows="3" cols="50" required></textarea>
                 </div>
                 <button type="submit" class="btn-rating-submit">Submit</button>
             </form>

@@ -49,15 +49,18 @@ while ($spacePointer = mysqli_fetch_array($cursor, MYSQLI_ASSOC)) {
         'id' => $spacePointer["id"], 
         'name' => $spacePointer["name"],
         'status' => $spacePointer["status"],
-        'hour_rate' => $spacePointer["hour_rate"],
+        'hourRate' => $spacePointer["hour_rate"],
         'type' => $spacePointer["type"],
         'latitude' => $spacePointer["latitude"],
         'longitude' => $spacePointer["longitude"],
-        'post_code' => $spacePointer["post_code"],
-        'description' => $spacePointer["description"]);
+        'address' => $spacePointer["address"],
+        'postCode' => $spacePointer["post_code"],
+        'description' => $spacePointer["description"],
+        'rating' => $spacePointer["rating"],
+        'review' => $spacePointer["review"]);
 }
 mysqli_close($connection);
-$response = array("status" => "success", "len" => $count, "spaces" => $spaces);
+$response = array("status" => true, "len" => $count, "spaces" => $spaces);
 header("Content-Type: application/json");
 echo json_encode($response);
 ?>

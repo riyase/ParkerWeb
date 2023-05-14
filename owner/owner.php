@@ -23,8 +23,8 @@
         <h2 class="logo">Spare Park</h2>
         <nav class="navbar">
             <a class="btn-driver active" href="#">Driver</a>
-            <a class="btn-bookings" href="#">Bookings</a>
             <a class="btn-owner" href="#">Owner</a>
+            <a class="btn-bookings" href="#">Bookings</a>
             <a href="#" class="btn-logout">Logout</a>
         </nav>
     </header>

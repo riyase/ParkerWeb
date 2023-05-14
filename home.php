@@ -20,14 +20,13 @@
         <h2 class="logo">Spare Park</h2>
         <nav class="navbar">
             <a class="btn-driver active" href="#">Driver</a>
-            <a class="btn-bookings" href="#">Bookings</a>
             <a class="btn-owner" href="#">Owner</a>
+            <a class="btn-bookings" href="#">Bookings</a>
             <a class="btn-logout" href="#">Logout</a>
             <button class="btn-login">Login</button>
         </nav>
     </header>
 
-    </div>
     <div class="popup-group">
         <div class="login-popup">
             <span class="icon-close-login">
@@ -100,6 +99,14 @@
         <!-- <p>Driver Layout!</p> -->
     </div>
     
+    <footer id="home-footer">
+        <div id="footer-container">
+            <p class="footer-item"><a class="btn-privacy" href="#">Privacy Policy</a></p>
+            <p class="footer-item"><a class="btn-terms" href="#">Terms & Conditions</a></p>
+            <p class="footer-item"><a class="btn-product" href="#">Product & Services</a></p>
+            <p class="footer-item"><a class="btn-contact" href="#">Contact</a></p>
+        </div>
+    </footer>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

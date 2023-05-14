@@ -25,15 +25,16 @@ $space_bookings = array();
 while ($row = mysqli_fetch_array($cursor, MYSQLI_ASSOC)) {
     $space_bookings[] = array(
         'id' => $row["id"], 
-        'username' => $row["name"],
-        'time_from' => $row["time_from"],
-        'time_to' => $row["time_to"],
+        'userName' => $row["name"],
+        'timeFrom' => $row["time_from"],
+        'timeTo' => $row["time_to"],
         'status' => $row["status"],
         'rating' => $row["rating"],
         'review' => $row["review"]);
 }
 mysqli_close($connection);
 
+$response = array("status" => true, "bookings" => $space_bookings);
 header("Content-Type: application/json");
-echo json_encode($space_bookings);
+echo json_encode($response);
 ?>

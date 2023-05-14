@@ -3,7 +3,7 @@
 //include('/spare_park/common/db/db_conn.php');
 ini_set("log_errors", 1);
 ini_set("error_log", "/tmp/php-error.log");
-error_log( "Hello, errors!" );
+error_log( "Hello, errors!");
 $server = "localhost:3306";
 $username = "root";
 $password = "";
@@ -15,8 +15,6 @@ $connection = mysqli_connect($server, $username, $password, $db) or die ("Not co
 $spaceId = $_POST['spaceId'];
 $timeFrom = $_POST['timeFrom'];
 $timeTo = $_POST['timeTo'];
-
-
 
 
 //$spaceId = 16;
@@ -58,7 +56,6 @@ query       already covered in case 1 & 2.
 */
 
 
-
 $sqlTimeCheck = "SELECT * FROM `booking` 
     WHERE space_id = '$spaceId' 
     AND (
@@ -70,7 +67,8 @@ $sqlTimeCheckResult = mysqli_query($connection, $sqlTimeCheck);
 $sqlTimeCheckResultCount = mysqli_num_rows($sqlTimeCheckResult);
 
 if ($sqlTimeCheckResultCount > 0) {
-    $response = array("status" => ("not_available from " . $newTimeFrom . " - " . $newTimeTo));
+    $response = array("status" => false,
+        "message" => ("not_available from " . $newTimeFrom . " - " . $newTimeTo));
     header("Content-Type: application/json");
     echo json_encode($response);
     return;
@@ -78,16 +76,19 @@ if ($sqlTimeCheckResultCount > 0) {
 
 session_start();
 
-$user_id = $_SESSION["user_id"];
+$user_id = 0;
+if (isset($_POST["userId"])) {
+    $user_id = $_POST["userId"];
+} else {
+    $user_id = $_SESSION["user_id"];
+}
+
 //$user_id = 13;
 
 $sql = "INSERT INTO booking(driver_id, space_id, time_from, time_to, status)
         VALUES('$user_id', '$spaceId', '$newTimeFrom', '$newTimeTo', 'requested')";
 
 $cursor = mysqli_query($connection, $sql);
-//$count = mysqli_num_rows($cursor);
-
-
 
 mysqli_close($connection);
 $response = array("status" => true);

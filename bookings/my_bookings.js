@@ -20,9 +20,9 @@ $(document).ready(function() {
     $.ajax({ url: "/spare_park/api/booking/get_my_bookings.php",
             type: 'GET',
             context: document.body,
-            success: function(bookings) {
-                for (let i=0; i<bookings.length; i++) {
-                    const booking = bookings[i];
+            success: function(response) {
+                for (let i=0; i<response.bookings.length; i++) {
+                    const booking = response.bookings[i];
                     let typeSrc = "/spare_park/img/vehicle-car.png";
                     switch(booking.type) {
                         case "motor_cycle":
@@ -46,7 +46,7 @@ $(document).ready(function() {
 
                     const spaceName = $("<p>")
                         .attr("class", "space-name")
-                        .append(booking.name);
+                        .append(booking.spaceName);
                     //const bookingTimeText = booking.timeFrom + " - " + booking.timeTo;
                     const bookingTime = $("<p>")
                         .attr("class", "space-time")
@@ -67,8 +67,8 @@ $(document).ready(function() {
                         .attr("space-name", booking.name)
                         .attr("space-status", booking.status)
                         .attr("space-type", booking.type)
-                        .attr("space-hour-rate", booking.hour_rate)
-                        .attr("space-postcode", booking.post_code)
+                        .attr("space-hour-rate", booking.hourRate)
+                        .attr("space-postcode", booking.postCode)
                         .attr("space-address", booking.address)
                         .attr("space-latitude", booking.latitude)
                         .attr("space-longitude", booking.longitude)
@@ -124,7 +124,7 @@ $(document).ready(function() {
                     //var item = $("<p>").append(spaceArray[i].name);
                     $("#my-bookings").append(item);
                 }
-                console.log("get bookings response. size:" + bookings.length);
+                console.log("get bookings response. size:" + response.bookings.length);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("Get bookings error!, xhr.status:" . xhr.status);

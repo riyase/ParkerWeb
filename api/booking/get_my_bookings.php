@@ -12,6 +12,9 @@ $connection = mysqli_connect($server, $username, $password, $db) or die ("Not co
 
 session_start();
 $user_id = $_SESSION["user_id"];
+if (!isset($_SESSION["user_id"])) {
+    $user_id = $_GET["userId"];
+}
 //$user_id = 13;
 
 $sql = "SELECT 
@@ -23,24 +26,24 @@ space.type, space.address, space.latitude, space.longitude, space.post_code, spa
 $cursor = mysqli_query($connection, $sql);
 $count = mysqli_num_rows($cursor);
 
-$spaces = array();
+$bookings = array();
 while ($row = mysqli_fetch_array($cursor, MYSQLI_ASSOC)) {
-    $spaces[] = array(
+    $bookings[] = array(
         'id' => $row["id"], 
         'spaceId' => $row["space_id"], 
-        'name' => $row["name"],
+        'spaceName' => $row["name"],
         'status' => $row["status"],
-        'hour_rate' => $row["hour_rate"],
+        'hourRate' => $row["hour_rate"],
         'timeFrom' => $row["time_from"],
         'timeTo' => $row["time_to"],
         'type' => $row["type"],
         'latitude' => $row["latitude"],
         'longitude' => $row["longitude"],
-        'post_code' => $row["post_code"],
+        'postCode' => $row["post_code"],
         'description' => $row["description"]);
 }
 mysqli_close($connection);
-
+$response = array("status" => true, "bookings" => $bookings);
 header("Content-Type: application/json");
-echo json_encode($spaces);
+echo json_encode($response);
 ?>

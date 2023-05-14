@@ -64,7 +64,7 @@ $(document).ready(function() {
                         .append(space.name);
                     const spaceAddress = $("<p>")
                         .attr("class", "space-address")
-                        .append(space.post_code);
+                        .append(space.postCode);
                     const spaceNameAddress = $("<div>")
                         .attr("class", "space-name-address")
                         .append(spaceName)
@@ -75,7 +75,7 @@ $(document).ready(function() {
                         .attr("class", "space-rate")
                         .attr("id", spaceId)
                         .attr("position", i)
-                        .append("£" + space.hour_rate + "/HR");
+                        .append("£" + space.hourRate + "/HR");
                     
                     /*var spaceDeleteSpan = $("<span>")
                         .attr("class", "icon btn-remove-space")
@@ -88,8 +88,8 @@ $(document).ready(function() {
                         .attr("space-name", space.name)
                         .attr("space-status", space.status)
                         .attr("space-type", space.type)
-                        .attr("space-hour-rate", space.hour_rate)
-                        .attr("space-postcode", space.post_code)
+                        .attr("space-hour-rate", space.hourRate)
+                        .attr("space-postcode", space.postCode)
                         .attr("space-address", space.address)
                         .attr("space-latitude", space.latitude)
                         .attr("space-longitude", space.longitude)

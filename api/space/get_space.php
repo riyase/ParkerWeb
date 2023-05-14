@@ -8,8 +8,8 @@ $db = "spare_park";
     
 $connection = mysqli_connect($server, $username, $password, $db) or die ("Not connected!");
 
-$spaceId = $_GET['id'];
-//$spaceId = 16;
+//$spaceId = $_GET['id'];
+$spaceId = 16;
 $sql = "SELECT * FROM space WHERE id = '$spaceId'";
 
 $cursor = mysqli_query($connection, $sql);

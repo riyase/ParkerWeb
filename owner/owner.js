@@ -19,9 +19,9 @@ $(document).ready(function() {
     $.ajax({ url: "/spare_park/api/space/get_my_spaces.php",
         type: 'GET',
         context: document.body,
-        success: function(spaceArray) {//spaceArray
-            for (let i=0; i<spaceArray.length; i++) {
-                const space = spaceArray[i];
+        success: function(response) {
+            for (let i=0; i<response.spaces.length; i++) {
+                const space = response.spaces[i];
                 let typeSrc = "/spare_park/img/vehicle-car.png";
                 switch(space.type) {
                     case "motor_cycle":
@@ -48,7 +48,7 @@ $(document).ready(function() {
                     .append(space.name);
                 const spaceAddress = $("<p>")
                     .attr("class", "space-address")
-                    .append(space.post_code);
+                    .append(space.postCode);
                 const spaceNameAddress = $("<div>")
                     .attr("class", "space-name-address")
                     .append(spaceName)
@@ -72,8 +72,8 @@ $(document).ready(function() {
                     .attr("space-name", space.name)
                     .attr("space-status", space.status)
                     .attr("space-type", space.type)
-                    .attr("space-hour-rate", space.hour_rate)
-                    .attr("space-postcode", space.post_code)
+                    .attr("space-hour-rate", space.hourRate)
+                    .attr("space-postcode", space.postCode)
                     .attr("space-address", space.address)
                     .attr("space-latitude", space.latitude)
                     .attr("space-longitude", space.longitude)
@@ -88,7 +88,7 @@ $(document).ready(function() {
                 //var item = $("<p>").append(spaceArray[i].name);
                 $("#my-spaces").append(liItem);
             }
-            console.log("get spaces response:" + spaceArray);
+            console.log("get spaces response:" + response.spaces);
         },
         error: function (xhr, ajaxOptions, thrownError) {
             console.log("Get spaces error!, xhr.status:" . xhr.status);
@@ -364,22 +364,22 @@ function getSpaceBookings(spaceId) {
             type: 'GET',
             data: jQuery.param({ id: spaceId }),
             context: document.body,
-            success: function(bookings) {
+            success: function(response) {
                 //$(".booking-item").empty();
-                for (let i=0; i<bookings.length; i++) {
-                    const booking = bookings[i];
+                for (let i=0; i<response.bookings.length; i++) {
+                    const booking = response.bookings[i];
 
                     const bookingNameTime = $("<div>")
                         .attr("class", "booking-name-time")
 
                     const bookingUserName = $("<p>")
                         .attr("class", "booking-driver-name")
-                        .append(booking.username + " - " + booking.id)
+                        .append(booking.userName + " - " + booking.id)
                     const bookingTime = $("<p>")
                         .attr("class", "booking-time")    
-                        .append(booking.time_from)
+                        .append(booking.timeFrom)
                         .append("<br>")
-                        .append(booking.time_to);
+                        .append(booking.timeTo);
 
                     bookingNameTime.append(bookingUserName)
                         .append(bookingTime);
@@ -393,8 +393,8 @@ function getSpaceBookings(spaceId) {
                         .attr("space-name", booking.name)
                         .attr("space-status", booking.status)
                         .attr("space-type", booking.type)
-                        .attr("space-hour-rate", booking.hour_rate)
-                        .attr("space-postcode", booking.post_code)
+                        .attr("space-hour-rate", booking.hourRate)
+                        .attr("space-postcode", booking.postCode)
                         .attr("space-address", booking.address)
                         .attr("space-latitude", booking.latitude)
                         .attr("space-longitude", booking.longitude)
@@ -417,13 +417,15 @@ function getSpaceBookings(spaceId) {
                             .attr("status", booking.status)
                             .attr("action", "accept")
                             .attr("position", i);
+                    } else {
+                        console.log("");
                     }
                     
                     var statusColor = "blue";
                     switch (booking.status) {
                         case "accepted":
                             statusColor = "green";
-                            bookingStatusIcon.attr("name", "checkmark-done-outline");
+                            bookingStatusIcon.attr("name", "checkmark-done-circle-outline");
                             //bookingStatusIconAccept.attr("name", "");
                             break;
                         case "rejected":
@@ -467,7 +469,7 @@ function getSpaceBookings(spaceId) {
                     //var item = $("<p>").append(spaceArray[i].name);
                     $("#space-bookings").append(item);
                 }
-                console.log("get bookings response. size:" + bookings.length);
+                console.log("get bookings response. size:" + response.bookings.length);
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 console.log("Get bookings error!, xhr.status:" . xhr.status);
