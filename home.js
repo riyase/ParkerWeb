@@ -34,6 +34,15 @@ $(document).ready(function() {
     $(".logo").click(function() {
         window.location = "/spare_park/home.php";
     });
+    $(".btn-privacy").click(function() {
+        window.location = "/spare_park/other/terms.html?display=privacy";
+    });
+    $(".btn-terms").click(function() {
+        window.location = "/spare_park/other/terms.html?display=terms";
+    });
+    $(".btn-product").click(function() {
+        window.location = "/spare_park/other/terms.html?display=product";
+    });
     $(".btn-bookings").click(function() {
         window.location = "/spare_park/bookings/my_bookings.php";
     });

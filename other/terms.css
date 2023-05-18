@@ -1,0 +1,15 @@
+#terms-container {
+    height: 100%;
+    width: 100%;
+    white-space: pre-wrap;
+    background: whitesmoke;
+    overflow: hidden;
+    overflow-y: scroll;
+    padding: 20px;
+}
+#title {
+    padding: 0px;
+}
+#data {
+    padding: 0px;
+}
