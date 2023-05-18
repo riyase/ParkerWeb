@@ -37,13 +37,13 @@
                 <form action="#">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input class="login-email" type="email" required>
-                        <label for="">Email</label>
+                        <input id="login-email" class="login-email" type="email" required>
+                        <label for="login-email">Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                        <input class="login-password" type="password" required>
-                        <label for="">Password</label>
+                        <input id="login-password" class="login-password" type="password" required>
+                        <label for="login-password">Password</label>
                     </div>
                     <button type="submit" class="btn-login-submit">Login</button>
                     <div class="login-register">
@@ -64,26 +64,26 @@
                 <form action="#">
                     <div class="input-box">
                         <span class="icon"><ion-icon name="person-outline"></ion-icon></span>
-                        <input class="register-name" type="text" required>
-                        <label for="">User name</label>
+                        <input id="register-name" class="register-name" type="text" required>
+                        <label for="register-name">User name</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input class="register-email" type="email" required>
-                        <label for="">Email</label>
+                        <input id="register-email" class="register-email" type="email" required>
+                        <label for="register-email">Email</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="mail-outline"></ion-icon></span>
-                        <input class="register-phone" type="phone" required>
-                        <label for="">Phone</label>
+                        <input id="register-phone" class="register-phone" type="phone" required>
+                        <label for="register-phone">Phone</label>
                     </div>
                     <div class="input-box">
                         <span class="icon"><ion-icon name="lock-closed-outline"></ion-icon></span>
-                        <input class="register-password" type="password" required>
-                        <label for="">Password</label>
+                        <input id="register-password" class="register-password" type="password" required>
+                        <label for="register-password">Password</label>
                     </div>
                     <div class="terms">
-                        <label for=""><input class="terms-checkbox" type="checkbox" >I agree to the terms & conditions</label>
+                        <label for="register-terms"><input id="register-terms" class="terms-checkbox" type="checkbox" >I agree to the terms & conditions</label>
                     </div>
                     <button type="submit" class="btn-register-submit">Register</button>
                     <div class="login-register">
